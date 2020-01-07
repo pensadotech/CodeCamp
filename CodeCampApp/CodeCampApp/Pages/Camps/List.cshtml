@@ -1,0 +1,50 @@
+﻿@page
+@model CodeCampApp.Pages.Camps.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Code Camp List</h1>
+
+<form method="get">
+    <div class="from-group mb-3">
+        <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search by restaurant name"
+                   asp-for="SearchTerm" />
+            <span class="input-group-append">
+                <button class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <small id="SearchHelp" class="form-text text-muted">The code camp that interst you.</small>
+    </div>
+</form>
+
+<table class="table">
+     <tr>
+         <th>Id</th>
+         <th>Name</th>
+         <th>EventDate</th>
+         <th>Weeks</th>
+         <th>Location</th>
+     </tr>
+
+    @foreach (var camp in Model.Camps)
+    {
+        <tr>
+            <td>@camp.Moniker</td>
+            <td>@camp.Name</td>
+            <td>@camp.EventDate</td>
+            <td>@camp.Length</td>
+            <td>@camp.LocationCityTown</td>
+        </tr>
+    }
+</table>
+
+
+@section footer {
+    <div>
+        <p>@Model.LocalMessage</p>
+    </div>
+}

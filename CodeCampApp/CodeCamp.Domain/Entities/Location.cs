@@ -5,7 +5,8 @@ using System.Text;
 namespace CodeCamp.Domain.Entities
 {
     /// <summary>
-    /// Location: Place in the planet where the CAMP will take place
+    /// File: Location
+    /// Purpose : Location entity that represent the place where a coding camp will occur.
     /// </summary>
     public class Location
     {

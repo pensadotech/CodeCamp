@@ -5,7 +5,8 @@ using System.Text;
 namespace CodeCamp.Domain.Entities
 {
     /// <summary>
-    /// Talk - Class characteristics from specific code camp
+    /// File: Talk
+    /// Purpose : Talk entity that represent a learning session in a coding camp.
     /// </summary>
     public class Talk
     {

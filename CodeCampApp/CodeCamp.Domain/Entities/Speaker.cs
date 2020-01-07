@@ -6,7 +6,8 @@ using System.Text;
 namespace CodeCamp.Domain.Entities
 {
     /// <summary>
-    /// Speaker represent the person imparting a Talk
+    /// File: Speaker
+    /// Purpose : Speaker entity that represent the person imparting a session in the code camp.
     /// </summary>
     public class Speaker
     {
@@ -36,6 +37,6 @@ namespace CodeCamp.Domain.Entities
         // life easy when fecthing the parent from the child class
         // This is important in MVC
         public Talk Talk { get; set; }
-        public int TalkID { get; set; }
+        public int TalkId { get; set; }
     }
 }

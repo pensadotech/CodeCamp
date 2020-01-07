@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCampApp", "CodeCampApp\CodeCampApp.csproj", "{881A9535-9D9F-4831-9ABA-41AF2F4DB82D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCamp.Domain", "CodeCamp.Domain\CodeCamp.Domain.csproj", "{6F69334F-AF61-420B-B854-94AA259AB94A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCamp.Domain", "CodeCamp.Domain\CodeCamp.Domain.csproj", "{6F69334F-AF61-420B-B854-94AA259AB94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCamp.Data", "CodeCamp.Data\CodeCamp.Data.csproj", "{E9795A2A-D199-4144-8870-4AA229687C36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCamp.Data", "CodeCamp.Data\CodeCamp.Data.csproj", "{E9795A2A-D199-4144-8870-4AA229687C36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{D7C7805C-3CD0-465B-9415-FD8F4F298705}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCamp.Data.Test", "CodeCamp.Data.Test\CodeCamp.Data.Test.csproj", "{E7FB30E0-C591-49CB-A0C9-F71A80575045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{E9795A2A-D199-4144-8870-4AA229687C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9795A2A-D199-4144-8870-4AA229687C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9795A2A-D199-4144-8870-4AA229687C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7FB30E0-C591-49CB-A0C9-F71A80575045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FB30E0-C591-49CB-A0C9-F71A80575045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FB30E0-C591-49CB-A0C9-F71A80575045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FB30E0-C591-49CB-A0C9-F71A80575045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7FB30E0-C591-49CB-A0C9-F71A80575045} = {D7C7805C-3CD0-465B-9415-FD8F4F298705}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA1C979F-6008-4ED0-91BD-853760920A7E}

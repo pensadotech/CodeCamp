@@ -6,17 +6,17 @@ using System.Text;
 namespace CodeCamp.Domain.Entities
 {
     /// <summary>
-    /// Code camp : Coding camp name and charactersitics
+    /// File: Camp
+    /// Purpose : Camp entity that represent a coding workshop.
     /// </summary>
     public class Camp
     {
         public int Id { get; set; }
 
-        // Moniker is an alterntive ID to be used from website, instead of using teh ID
-        [Required, StringLength(50)]
-        public string Moniker { get; set; }
-
         public string Name { get; set; }
+        // Moniker is an alterntive ID to be used from website, instead of using teh ID
+        //[Required, StringLength(50)]
+        public string Moniker { get; set; }
         public DateTime EventDate { get; set; } = DateTime.MinValue;
         public int Length { get; set; } = 1;
 
