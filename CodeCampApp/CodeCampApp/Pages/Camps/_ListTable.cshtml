@@ -1,0 +1,16 @@
+﻿@* This is a partial view that receives a model element and renders rows *@
+@* Model is passed by the page using the partial view :  <partial name="_ListTable" model="camp" />  *@
+
+@using CodeCampApp
+@model CodeCampApp.Models.CampModel
+
+<tr>
+    <td>@Model.Moniker</td>
+    <td>@Model.Name</td>
+    <td>@Model.EventDate</td>
+    <td>@Model.Length</td>
+    <td>@Model.LocationCityTown</td>
+    <td>@Model.LocationStateProvince</td>
+</tr>
+
+

@@ -12,31 +12,42 @@ namespace CodeCampApp.Mappings
     {
         // Constructors ..............................
         public MappingProfile()
-        {
+        {   
+            //  Mapping Domian DTO to Models in the applicaiton add a security layer
+            // to protect a dirrect connection to the database. The mapping tool will
+            // help sql injection and additional transformations to secure incomng data.
+            // However, this also helps to simplify teh manipulation of data clusters in 
+            // the frontend, specially when rendering data from more than one Domain DTO.
+
             // Camp to CampModel mapping
             //this.CreateMap<Camp, CampModel>()
             //    .ReverseMap();
 
-            // Camp DTO to CampModel 
-            // ForMember -> Model -> Entity, 
-            // but defining explicit mapping from Camp.Venue -> CampModel.Location.VenueName
-            // ReverseMap: To indicate bidirectional mapping (Model <--> Entitiy)
+            // Map Domain.Camp DTO to App.CampModel 
+            // In this example, an explicit mapping is defined to match name differences  
+            // from Comian.Camp.Venue -> App.CampModel.Location.VenueName
+            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Camp, CampModel>()
                .ForMember(c => c.Venue, o => o.MapFrom(m => m.Location.VenueName))
                .ReverseMap();
 
-
+            // Mapp Domain.Talk to App.TalkModel
             // Example for a mapping ignoring to populate Parent and Children objects
+            // In this case, the Domain.Talk.Camp will not be copied. 
+            // Commented out there is a second example to not bring the speaker data
+            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Talk, TalkModel>()
                 .ReverseMap()
-                .ForMember(t => t.Camp, opt => opt.Ignore())
-                .ForMember(t => t.Speaker, opt => opt.Ignore());
+                .ForMember(t => t.Camp, opt => opt.Ignore());
+             // .ForMember(t => t.Speaker, opt => opt.Ignore());
 
+            // Mapp Domain.Speaker to App.SpeakerModel
+            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Speaker, SpeakerModel>()
                .ReverseMap();
 
             // < Create other mappinsg in here >
-            // Add as many of these lines as you need to map your objects
+            // Add as many of these lines as you need to map your objects, for example
             // CreateMap<User, UserDto>();
             // CreateMap<UserDto, User>();
         }

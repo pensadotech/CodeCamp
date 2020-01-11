@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCamp.Data", "CodeCamp.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{D7C7805C-3CD0-465B-9415-FD8F4F298705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCamp.Data.Test", "CodeCamp.Data.Test\CodeCamp.Data.Test.csproj", "{E7FB30E0-C591-49CB-A0C9-F71A80575045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCamp.Data.Test", "CodeCamp.Data.Test\CodeCamp.Data.Test.csproj", "{E7FB30E0-C591-49CB-A0C9-F71A80575045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

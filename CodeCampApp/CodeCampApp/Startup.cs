@@ -27,21 +27,27 @@ namespace CodeCampApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Temporary element when testing deployment, restore SqlRestaurantData for final version
-            services.AddScoped<ICampRepository, InMemoryCampRepository>();
+            // NOTE: For development only, instantiate a singleton that will implement
+            // the InMemoryCampRepository, using the ICampRepository
+            // singleton is not good for prod envitonment
+            services.AddSingleton<ICampRepository, InMemoryCampRepository>();
 
-            // AutoMapper: Define mapping profile
+            // Temporary element when testing deployment, restore SqlRestaurantData for final version
+            //services.AddScoped<ICampRepository, InMemoryCampRepository>();
+
+            // AutoMapper: Define mapping profile. In this case, the App.MappingProfile 
+            // contains the mapping definition between Domain.DTOs and App.Models
             var mappingCfg = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
                 mc.AllowNullCollections = true;
                 mc.AllowNullDestinationValues = true;
-          
             });
 
-            // AutoMapper: Add AutoMapper as a singletion services
+            // AutoMapper: Add IMapper as a singletion services
             IMapper mapper = mappingCfg.CreateMapper();
             services.AddSingleton(mapper);
+
 
 
 

@@ -43,14 +43,15 @@ namespace CodeCamp.Data.Repositories
         }
 
         // Camps
-        public IEnumerable<Camp> GetAllCampsByName(string name, bool includeTalks = false)
-        {
+        public IEnumerable<Camp> GetAllCampsByName(string name, bool includeTalks= true)
+        {  
+            // Collect all camps from local list
             IEnumerable<Camp> camps = from c in _camps
                                       where string.IsNullOrEmpty(name) || c.Name.StartsWith(name, StringComparison.CurrentCultureIgnoreCase)
                                       orderby c.Name
                                       select c;
 
-            // If request does nto want talk in the cam premove them
+            // If request does not want talk in the camp, remove them
             if (!includeTalks)
             {
                 foreach (var camp in camps)

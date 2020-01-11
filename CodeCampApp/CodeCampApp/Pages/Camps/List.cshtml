@@ -6,10 +6,13 @@
 
 <h1>Code Camp List</h1>
 
+<!-- Variable that comes from appsettngs.json -->
+<p>@Model.ConfigMessage</p>
+
 <form method="get">
     <div class="from-group mb-3">
         <div class="input-group">
-            <input type="search" class="form-control" placeholder="Search by restaurant name"
+            <input type="search" class="form-control" placeholder="Search by Camp name"
                    asp-for="SearchTerm" />
             <span class="input-group-append">
                 <button class="btn btn-default">
@@ -21,24 +24,26 @@
     </div>
 </form>
 
-<table class="table">
-     <tr>
-         <th>Id</th>
-         <th>Name</th>
-         <th>EventDate</th>
-         <th>Weeks</th>
-         <th>Location</th>
-     </tr>
+@if (Model.ActionMessage != null)
+{
+    <div class="alert alert-danger">@Model.ActionMessage</div>
+}
 
+<table class="table">
+    @* Table header *@
+    <tr>
+        <th>Key</th>
+        <th>Name</th>
+        <th>EventDate</th>
+        <th>Weeks</th>
+        <th>Location</th>
+        <th>State</th>
+    </tr>
+
+    @* Use a partial view to render the table *@
     @foreach (var camp in Model.Camps)
     {
-        <tr>
-            <td>@camp.Moniker</td>
-            <td>@camp.Name</td>
-            <td>@camp.EventDate</td>
-            <td>@camp.Length</td>
-            <td>@camp.LocationCityTown</td>
-        </tr>
+        <partial name="_ListTable" model="camp" />
     }
 </table>
 

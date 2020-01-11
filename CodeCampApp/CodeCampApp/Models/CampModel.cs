@@ -20,7 +20,7 @@ namespace CodeCampApp.Models
         // this property
         public string Venue { get; set; }
         // If properties that belong to a child entity are named as the entity itself
-        // for example "Locaiton", AutoMapper automatically will know what to do.
+        // for example "Location.Address1 => LocationAddress1", AutoMapper automatically will know what to do.
         public string LocationAddress1 { get; set; }
         public string LocationAddress2 { get; set; }
         public string LocationAddress3 { get; set; }
