@@ -16,9 +16,9 @@ namespace CodeCampApp.Pages.Camps
     {
         // Private members..........................
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
+        private readonly ILogger<ListModel> _logger;
         private readonly Domain.Repositories.ICampRepository _campRepository;
-         private readonly IMapper _mapper;
-        private readonly ILogger<IndexModel> _logger;
 
         // Properties ...............................
         public IEnumerable<CampModel> Camps { get; set; }
@@ -36,37 +36,41 @@ namespace CodeCampApp.Pages.Camps
         public string SearchTerm { get; set; }
 
         // Constructors ............................
-        public ListModel(IConfiguration config, ILogger<IndexModel> logger, 
+        public ListModel(IConfiguration config, ILogger<ListModel> logger, 
             IMapper mapper, Domain.Repositories.ICampRepository campRepository)
         {
-            _config = config;
-            _logger = logger;
-            _mapper = mapper;
-            _campRepository = campRepository;
+           _config = config;
+           _logger = logger;
+           _mapper = mapper;
+           _campRepository = campRepository;
         }
 
         // Methods .................................
+
+        /// <summary>
+        /// OnGet() - wil not use IActionResult as is not returning a page, but rather
+        /// is setting the properties that are referenced in the web page
+        /// </summary>
         public void OnGet()
         {
             // Log activity
-            this._logger.LogInformation("** Executing Camps ListModel");
+            _logger.LogInformation("** Executing Camps ListModel");
             // Local message
-            this.LocalMessage = "This is the list of all available camps";
+            LocalMessage = "This is the list of all available camps";
             // Configuration message
-            this.ConfigMessage = _config["CfgMessage"];
+            ConfigMessage = _config["CfgMessage"];
 
             try
             {
-                bool includeTalks = true;
-                // Retrive all camps from repository
-                IEnumerable<Domain.Entities.Camp> domainCamps = _campRepository.GetAllCampsByName(SearchTerm, includeTalks);
+                // Retrive all camps from repository, using the SearchTerm coming from teh frontend
+                IEnumerable<Domain.Entities.Camp> domainCamps = _campRepository.GetAllCampsByName(SearchTerm);
 
                 // Copy data from Domain DTo to App Model
                 Camps = _mapper.Map<CampModel[]>(domainCamps);
             }
             catch
             {
-                this._logger.LogError("Unable to retreive camps");
+                _logger.LogError("Unable to retreive camps");
             }
         }
     }

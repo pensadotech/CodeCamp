@@ -1,0 +1,26 @@
+﻿@page
+@model CodeCampApp.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Camp Detail</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-tesxt">@Model.Camp.Moniker</h6>
+        <h4 class="card-title">@Model.Camp.Name</h4>
+        <h6 class="card-tesxt">@Model.Camp.EventDate</h6>
+        <h6 class="card-tesxt">@Model.Camp.Length</h6>
+        <h6 class="card-tesxt">@Model.Camp.LocationCityTown</h6>
+        <h6 class="card-tesxt">@Model.Camp.LocationStateProvince</h6>
+    </div>
+
+</div>
+
+@if (Model.ActionMessage != null)
+{
+    <div class="alert alert-info">@Model.ActionMessage</div>
+}
+
+<a class="btn btn-primary" asp-page="./List">Return to Code Camp list</a>

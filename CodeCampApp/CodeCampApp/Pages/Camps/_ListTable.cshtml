@@ -11,6 +11,23 @@
     <td>@Model.Length</td>
     <td>@Model.LocationCityTown</td>
     <td>@Model.LocationStateProvince</td>
+    <td>
+        <a class="btn-lg"
+           asp-page="./Detail"
+           asp-route-moniker="@Model.Moniker">
+            <i class="fa fa-search-plus"></i> Detail
+        </a>
+        <a class="btn-lg"
+           asp-page="./Edit"
+           asp-route-moniker="@Model.Moniker">
+            <i class="fa fa-edit"></i> Edit
+        </a>
+        <a class="btn-lg"
+           asp-page="./Delete"
+           asp-route-moniker="@Model.Moniker">
+            <i class="fa fa-trash"></i> Delete
+        </a>
+    </td>
 </tr>
 
 

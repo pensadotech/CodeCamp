@@ -5,6 +5,13 @@ using CodeCamp.Domain.Entities;
 
 namespace CodeCamp.Data.DummyData
 {
+    /// <summary>
+    /// CampDummyData - This data is inteded to be sued with teh InMemoryCampRepository class
+    /// to provide a simple start point for the developer working on the web pages.
+    /// Once the work is completed teh developer must switch to the repository that 
+    /// load data from the database (or real datasource)
+    /// This program will set Camps, Locations, Talks, and Speakers, including relationships
+    /// </summary>
     public static class CampDummyData
     {
         public static List<Camp> GenerateDummyData()

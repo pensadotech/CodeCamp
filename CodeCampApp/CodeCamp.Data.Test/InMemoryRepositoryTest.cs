@@ -7,7 +7,7 @@ using Domain = CodeCamp.Domain;
 namespace CodeCamp.Data.Test
 {
     [TestClass]
-    public class InMemoryTest
+    public class InMemoryRepositoryTest
     {
         private Domain.Repositories.ICampRepository _repository; 
 
@@ -30,7 +30,7 @@ namespace CodeCamp.Data.Test
             // Crete a data repository (at initialization)
 
             // Act
-            IEnumerable<Domain.Entities.Camp> camps = _repository.GetAllCampsByName("",true);
+            IEnumerable<Domain.Entities.Camp> camps = _repository.GetAllCampsByName("");
 
             // Assert
             Assert.IsNotNull(camps);

@@ -13,34 +13,31 @@ namespace CodeCamp.Domain.Repositories
     /// </summary>
     public interface ICampRepository
     {
-        // General 
+        // Generic entries 
         T Add<T>(T entity) where T : class;
         T Update<T>(T entity) where T : class;
         T Delete<T>(T entity) where T : class;
 
         // Commiting changes
-        void CommitChanges();
-
-
+        int CommitChanges();
+        
         // Camp 
-        IEnumerable<Camp> GetAllCampsByName(string name, bool includeTalks = false);
-        Camp GetCampById(string moniker, bool includeTalks = false);
-        IEnumerable<Camp> GetAllCampsByEventDate(DateTime dateTime, bool includeTalks = false);
+        IEnumerable<Camp> GetAllCampsByName(string name);
+        Camp GetCampById(int campId);
+        Camp GetCampById(string moniker);
+        IEnumerable<Camp> GetAllCampsByEventDate(DateTime dateTime);
 
         // Location
-        IEnumerable<Location> GetAllLocations(bool includeCamps = false);
-        Location GetLocationByName(string venueName, bool includeCamps = false);
-        IEnumerable<Location> GetAllLocationsByEventDate(DateTime dateTime, bool includeCamps = false);
-
+        IEnumerable<Location> GetAllLocations(string venueName);
+        Location GetLocationById(int locationId);
 
         // Talk
-        IEnumerable<Talk> GetAllTalksInCamp(string campId, bool includeSpeakers = false);
-        Talk GetTalkById(string campId, int talkId, bool includeSpeakers = false);
+        IEnumerable<Talk> GetAllTalks(string title);
+        Talk GetTalkById (int talkId);
 
         // Speaker
-        IEnumerable<Speaker> GetAllSpeakers();
+        IEnumerable<Speaker> GetAllSpeakers(string speakerLastName);
         Speaker GetSpeakerById(int speakerId);
-        IEnumerable<Speaker> GetAllSpeakersInCamp(string campId);
 
 
     }
