@@ -24,19 +24,34 @@ namespace CodeCamp.Data.Test
         }
 
         [TestMethod]
-        public void GetAllCampsByNameTest()
+        public void GetAllCampsTest()
         {
             // Arrange
             // Crete a data repository (at initialization)
 
             // Act
-            IEnumerable<Domain.Entities.Camp> camps = _repository.GetAllCampsByName("");
+            IEnumerable<Domain.Entities.Camp> camps = _repository.GetAllCamps();
 
             // Assert
             Assert.IsNotNull(camps);
             Assert.AreEqual(2, camps.ToList().Count);
 
         }
+        [TestMethod]
+        public void GetAllCampsByNameTest()
+        {
+            // Arrange
+            // Crete a data repository (at initialization)
+
+            // Act
+            IEnumerable<Domain.Entities.Camp> camps = _repository.GetAllCamps("UCI");
+
+            // Assert
+            Assert.IsNotNull(camps);
+            Assert.AreEqual(1, camps.ToList().Count);
+
+        }
+
 
 
 

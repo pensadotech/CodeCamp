@@ -54,10 +54,6 @@ namespace CodeCamp.Data.Repositories
 
                 // Determine the Max ID, add one, and assign it
                 newCamp.Id = _camps.Max(camp => camp.Id) + 1;
-
-                // Convert back to entity, is this needed?
-                entity = (T)(object)newCamp;
-
             }
             else if (objType == typeof(Location))
             {
@@ -69,10 +65,6 @@ namespace CodeCamp.Data.Repositories
 
                 // Determine the Max ID, add one, and assign it
                 newLoc.Id = _locations.Max(loc => loc.Id) + 1;
-
-                // Convert back to entity, is this needed?
-                entity = (T)(object)newLoc;
-
             }
             else if (objType == typeof(Talk))
             {
@@ -84,9 +76,6 @@ namespace CodeCamp.Data.Repositories
 
                 // Determine the Max ID, add one, and assign it
                 newTalk.Id = _talks.Max(talk => talk.Id) + 1;
-
-                // Convert back to entity, is this needed?
-                entity = (T)(object)newTalk;
             }
             else if (objType == typeof(Speaker))
             {
@@ -98,60 +87,9 @@ namespace CodeCamp.Data.Repositories
 
                 // Determine the Max ID, add one, and assign it
                 newSpeaker.Id = _speakers.Max(speaker => speaker.Id) + 1;
-
-                // Convert back to entity, is this needed?
-                entity = (T)(object)newSpeaker;
             }
 
             return entity;
-        }
-
-        public T Update<T>(T entity) where T : class
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("unable to update, entity is null");
-            }
-
-            // Obtain the type of incoming element
-            Type objType = entity.GetType();
-
-            // Delete from proper list
-            if (objType == typeof(Camp))
-            {
-                // Cast to Object and then to entity
-                Camp tgtCamp = (Camp)(object)entity;
-
-                var campToUpd = _camps.SingleOrDefault(camp => camp.Id == tgtCamp.Id);
-
-                if (campToUpd != null)
-                {
-                    campToUpd.Name = tgtCamp.Name;
-                    campToUpd.Moniker = tgtCamp.Moniker;
-                    campToUpd.EventDate = tgtCamp.EventDate;
-                    campToUpd.Location = tgtCamp.Location;
-                    campToUpd.Talks = tgtCamp.Talks;
-                }
-
-                // Convert back to entity, is this needed?
-                entity = (T)(object)campToUpd;
-
-            }
-            else if (objType == typeof(Location))
-            {
-
-            }
-            else if (objType == typeof(Talk))
-            {
-
-            }
-            else if (objType == typeof(Speaker))
-            {
-
-            }
-
-            return entity;
-
         }
 
         public T Delete<T>(T entity) where T : class
@@ -168,31 +106,116 @@ namespace CodeCamp.Data.Repositories
             if (objType == typeof(Camp))
             {
                 // Cast to Object and then to entity
-                Camp tgtCamp = (Camp)(object)entity;
+                Camp camp = (Camp)(object)entity;
 
-                // Find elemen in teh list
-                var campToDelete = _camps.SingleOrDefault(camp => camp.Id == tgtCamp.Id);
+                // Find elemen in the list
+                var campToDele = GetCampById(camp.Id);
 
                 // If element is detected, delete it from the list
-                if(campToDelete != null)
+                if(campToDele != null)
                 {
-                    _camps.Remove(campToDelete);
+                    _camps.Remove(campToDele);
                 }
-
-                entity = (T)(object)campToDelete;
-
             }
             else if (objType == typeof(Location))
             {
-                
+                // Cast to Object and then to entity
+                Location loc = (Location)(object)entity;
+
+                // Find elemen in the list
+                var locToDel = GetLocationById(loc.Id);
+
+                // If element is detected, delete it from the list
+                if (locToDel != null)
+                {
+                    _locations.Remove(locToDel);
+                }
             }
             else if (objType == typeof(Talk))
             {
+                // Cast to Object and then to entity
+                Talk talk = (Talk)(object)entity;
+
+                // Find elemen in the list
+                var talkToDel = GetTalkById(talk.Id);
+
+                // If element is detected, delete it from the list
+                if (talkToDel != null)
+                {
+                    _talks.Remove(talkToDel);
+                }
+            }
+            else if (objType == typeof(Speaker))
+            {
+                // Cast to Object and then to entity
+                Speaker spker = (Speaker)(object)entity;
+
+                // Find elemen in the list
+                var spkerToDel = GetSpeakerById(spker.Id);
+
+                // If element is detected, delete it from the list
+                if(spkerToDel != null)
+                {
+                    _speakers.Remove(spkerToDel);
+                }
+            }
+
+            return entity;
+        }
+
+        // Update
+        public T Update<T>(T entity) where T : class
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("unable to Update, entity is null");
+            }
+
+            // Obtain the type of incoming element
+            Type objType = entity.GetType();
+
+            // Delete from proper list
+            if (objType == typeof(Camp))
+            {
+                // Cast to Object and then to entity
+                Camp camp = (Camp)(object)entity;
+
+               
+            }
+            else if (objType == typeof(Location))
+            {
+                // Cast to Object and then to entity
+                Location loc = (Location)(object)entity;
+
+                // Find elemen in the list
+                var locToUpd = GetLocationById(loc.Id);
+
+                // If element is detected, update it 
+                if (locToUpd != null)
+                {
+                    locToUpd.VenueName = loc.VenueName;
+                    locToUpd.Address1 = loc.Address1;
+                    locToUpd.Address2 = loc.Address2;
+                    locToUpd.Address3 = loc.Address3;
+                    locToUpd.CityTown = loc.CityTown;
+                    locToUpd.StateProvince = loc.StateProvince;
+                    locToUpd.PostalCode = loc.PostalCode;
+                    locToUpd.Country = loc.Country;
+                }
+            }
+            else if (objType == typeof(Talk))
+            {
+                // Cast to Object and then to entity
+                Talk talk = (Talk)(object)entity;
+
                 
             }
             else if (objType == typeof(Speaker))
             {
-                
+                // Cast to Object and then to entity
+                Speaker spker = (Speaker)(object)entity;
+
+               
             }
 
             return entity;
@@ -205,7 +228,7 @@ namespace CodeCamp.Data.Repositories
         }
 
         // Camps
-        public IEnumerable<Camp> GetAllCampsByName(string name)
+        public IEnumerable<Camp> GetAllCamps(string name = "")
         {
             // Get all records from the list, but filter if incoming parameters has a value
             IEnumerable<Camp> camps = from camp in _camps
@@ -242,7 +265,7 @@ namespace CodeCamp.Data.Repositories
         }
 
         // Locations
-        public IEnumerable<Location> GetAllLocations(string venueName)
+        public IEnumerable<Location> GetAllLocations(string venueName = "")
         {
             // Get all records from the list, but filter if incoming parameters has a value
             IEnumerable<Location> locations = from loc in _locations
@@ -261,17 +284,17 @@ namespace CodeCamp.Data.Repositories
         }
 
         // Talks
-        IEnumerable<Talk> GetAllTalks(string talkTitle)
+        public IEnumerable<Talk> GetAllTalks(string title = "")
         {
             // Get all records from the list, but filter if incoming parameters has a value
             IEnumerable<Talk> talks = from talk in _talks
-                                      where string.IsNullOrEmpty(talkTitle) || talk.Title.StartsWith(talkTitle, StringComparison.CurrentCultureIgnoreCase)
+                                      where string.IsNullOrEmpty(title) || talk.Title.StartsWith(title, StringComparison.CurrentCultureIgnoreCase)
                                       orderby talk.Title
                                       select talk;
             return talks;
         }
 
-        Talk GetTalkById(int talkId)
+        public Talk GetTalkById(int talkId)
         {
             // Find first record that matches the incoming parameter
             Talk talk = _talks.FirstOrDefault(talk => talk.Id == talkId);
@@ -280,11 +303,11 @@ namespace CodeCamp.Data.Repositories
         }
 
         // Speakers
-        public IEnumerable<Speaker> GetAllSpeakers(string speakerLastName)
+        public IEnumerable<Speaker> GetAllSpeakers(string lastName = "")
         {
             // Get all records from the list, but filter if incoming parameters has a value
             IEnumerable<Speaker> speakers = from speaker in _speakers
-                                            where string.IsNullOrEmpty(speakerLastName) || speaker.LastName.StartsWith(speakerLastName, StringComparison.InvariantCultureIgnoreCase)
+                                            where string.IsNullOrEmpty(lastName) || speaker.LastName.StartsWith(lastName, StringComparison.InvariantCultureIgnoreCase)
                                             orderby speaker.LastName
                                             select speaker;
             return speakers;
@@ -298,14 +321,6 @@ namespace CodeCamp.Data.Repositories
             return speaker;
         }
 
-        IEnumerable<Talk> ICampRepository.GetAllTalks(string title)
-        {
-            throw new NotImplementedException();
-        }
-
-        Talk ICampRepository.GetTalkById(int talkId)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

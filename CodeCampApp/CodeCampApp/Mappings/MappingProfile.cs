@@ -31,7 +31,12 @@ namespace CodeCampApp.Mappings
                .ForMember(c => c.Venue, o => o.MapFrom(m => m.Location.VenueName))
                .ReverseMap();
 
-            // Mapp Domain.Talk to App.TalkModel
+            // Map Domain.Location to App.LocationModel
+            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
+            this.CreateMap<Location, LocationModel>()
+              .ReverseMap();
+
+            // Map Domain.Talk to App.TalkModel
             // Example for a mapping ignoring to populate Parent and Children objects
             // In this case, the Domain.Talk.Camp will not be copied. 
             // Commented out there is a second example to not bring the speaker data
@@ -45,6 +50,7 @@ namespace CodeCampApp.Mappings
             // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Speaker, SpeakerModel>()
                .ReverseMap();
+
 
             // < Create other mappinsg in here >
             // Add as many of these lines as you need to map your objects, for example

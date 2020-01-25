@@ -18,33 +18,27 @@ namespace CodeCamp.Domain.Repositories
     {
         // General - no need to be async
         T Add<T>(T entity) where T : class;
-        T Update<T>(T entity) where T : class;
         T Delete<T>(T entity) where T : class;
 
         // Commiting changes
-        Task<bool> CommitChangesAsync();
-
-
+        Task<bool> CommitChanges();
+        
         // Camp 
-        Task<IEnumerable<Camp>> GetAllCampsByNameAsync(string name,bool includeTalks = false);
-        Task<Camp> GetCampByIdAsync(string moniker, bool includeTalks = false);
-        Task<IEnumerable<Camp>> GetAllCampsByEventDateAsync(DateTime dateTime, bool includeTalks = false);
-
+        Task<IEnumerable<Camp>> GetAllCamps(string name = "");
+        Task<Camp> GetCampById(string moniker);
+        Task<IEnumerable<Camp>> GetAllCampsByEventDate(DateTime dateTime);
 
         // Location
-        Task<IEnumerable<Location>> GetAllLocationsAsync(bool includeCamps = false);
-        Task<Location> GetLocationByNameAsync(string venueName, bool includeCamps = false);
-        Task<IEnumerable<Location>> GetAllLocationsByEventDateAsync(DateTime dateTime, bool includeCamps = false);
-
+        Task<IEnumerable<Location>> GetAllLocations(string venueName = "");
+        Task<Location> GetLocationById(int locationId);
 
         // Talk
-        Task<IEnumerable<Talk>> GetTalksInCampAsync(string campId, bool includeSpeakers = false);
-        Task<Talk> GetTalkByIdAsync(string campId, int talkId, bool includeSpeakers = false);
-
+        Task<IEnumerable<Talk>> GetAllTalks(string title = "");
+        Task<Talk> GetTalkById(int talkId);
 
         // Speaker
-        Task<IEnumerable<Speaker>> GetAllSpeakersAsync();
-        Task<Speaker> GetSpeakerAsync(int speakerId);
-        Task<IEnumerable<Speaker>> GetSpeakersInCampAsync(string campId);
+        Task<IEnumerable<Speaker>> GetAllSpeakers(string speakerLastName = "");
+        Task<Speaker> GetSpeakerById(int speakerId);
+        
     }
 }

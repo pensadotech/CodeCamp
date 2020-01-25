@@ -1,0 +1,89 @@
+﻿@* Important: page is handling teh LocationModel, and not Domain.Location *@
+@page
+@model CodeCampApp.Pages.Locations.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Locations List</h1>
+
+<!-- Variable that comes from appsettngs.json -->
+<p>@Model.ConfigMessage</p>
+
+<form method="get">
+    <div class="from-group mb-3">
+        <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search by Venue name"
+                   asp-for="SearchTerm" />
+            <span class="input-group-append">
+                <button class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <small id="SearchHelp"
+               class="form-text text-muted">
+            The code camp  Location that interest you.
+        </small>
+    </div>
+</form>
+
+@if (Model.ActionMessage != null)
+{
+    <div class="alert alert-danger">@Model.ActionMessage</div>
+}
+
+@* Button to add a new element *@
+<a class="btn btn-primary"
+   asp-page="./Edit">
+    <i class="fa fa-edit"></i> Add New
+</a>
+
+<table class="table">
+    @* Table header *@
+    <tr>
+        <th>VenueName</th>
+        <th>CityTown</th>
+        <th>StateProvince</th>
+        <th>PostalCode</th>
+        <th>Country</th>
+    </tr>
+
+    @* Use a partial view to render the table *@
+    @foreach (var loc in Model.Locations)
+    {
+        <tr>
+            <td>@loc.VenueName</td>
+            <td>@loc.CityTown</td>
+            <td>@loc.StateProvince</td>
+            <td>@loc.PostalCode</td>
+            <td>@loc.Country</td>
+            <td>
+                <a class="btn-lg"
+                   asp-page="./Detail"
+                   asp-route-locationId="@loc.Id">
+                    <i class="fa fa-search-plus"></i> Detail
+                </a>
+                <a class="btn-lg"
+                   asp-page="./Edit"
+                   asp-route-locationId="@loc.Id">
+                    <i class="fa fa-edit"></i> Edit
+                </a>
+                <a class="btn-lg"
+                   asp-page="./Delete"
+                   asp-route-locationId="@loc.Id">
+                    <i class="fa fa-trash"></i> Delete
+                </a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+@section footer {
+    <div>
+        <p>@Model.LocalMessage</p>
+    </div>
+}
+

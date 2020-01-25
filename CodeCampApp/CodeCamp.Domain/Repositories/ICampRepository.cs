@@ -15,28 +15,27 @@ namespace CodeCamp.Domain.Repositories
     {
         // Generic entries 
         T Add<T>(T entity) where T : class;
-        T Update<T>(T entity) where T : class;
         T Delete<T>(T entity) where T : class;
-
+        T Update<T>(T entity) where T : class;
         // Commiting changes
         int CommitChanges();
         
         // Camp 
-        IEnumerable<Camp> GetAllCampsByName(string name);
+        IEnumerable<Camp> GetAllCamps(string name = "");
         Camp GetCampById(int campId);
         Camp GetCampById(string moniker);
         IEnumerable<Camp> GetAllCampsByEventDate(DateTime dateTime);
 
         // Location
-        IEnumerable<Location> GetAllLocations(string venueName);
+        IEnumerable<Location> GetAllLocations(string venueName = "");
         Location GetLocationById(int locationId);
 
         // Talk
-        IEnumerable<Talk> GetAllTalks(string title);
+        IEnumerable<Talk> GetAllTalks(string title = "");
         Talk GetTalkById (int talkId);
 
         // Speaker
-        IEnumerable<Speaker> GetAllSpeakers(string speakerLastName);
+        IEnumerable<Speaker> GetAllSpeakers(string lastName = "");
         Speaker GetSpeakerById(int speakerId);
 
 

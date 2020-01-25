@@ -1,0 +1,25 @@
+﻿@* The page will receive an aps-rout-locationId from calling page *@
+@* Important: page is handling teh LocationModel, and not Domain.Location *@
+@page "{locationId:int}"
+@model CodeCampApp.Pages.Locations.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Location Detail</h1>
+
+<div calss="card">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Location.VenueName</h4>
+        <h6 class="card-text">Address1: @Model.Location.Address1</h6>
+        <h6 class="card-text">Address2: @Model.Location.Address2</h6>
+        <h6 class="card-text">Address3: @Model.Location.Address3</h6>
+        <h6 class="card-text">City-Town:  @Model.Location.CityTown</h6>
+        <h6 class="card-text">State-Province: @Model.Location.StateProvince</h6>
+        <h6 class="card-text">Postal Code: @Model.Location.PostalCode</h6>
+        <h6 class="card-text">Country: @Model.Location.Country</h6>
+    </div>
+</div>
+
+
+<a class="btn btn-primary" asp-page="./List">Return to Locations list</a>

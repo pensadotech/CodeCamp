@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CodeCampApp.Pages.Camps
+namespace CodeCampApp.Pages.Locations
 {
     public class ListModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace CodeCampApp.Pages.Camps
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties ...............................
-        public IEnumerable<CampModel> Camps { get; set; }
+        public IEnumerable<LocationModel> Locations { get; set; }
 
         // To handle messages
         public string LocalMessage { get; set; }
@@ -35,42 +35,37 @@ namespace CodeCampApp.Pages.Camps
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-        // Constructors ............................
-        public ListModel(IConfiguration config, ILogger<ListModel> logger, 
+        // Constructors .............................
+        public ListModel(IConfiguration config, ILogger<ListModel> logger,
             IMapper mapper, Domain.Repositories.ICampRepository campRepository)
         {
-           _config = config;
-           _logger = logger;
-           _mapper = mapper;
-           _campRepository = campRepository;
+            _config = config;
+            _logger = logger;
+            _mapper = mapper;
+            _campRepository = campRepository;
         }
 
         // Methods .................................
-
-        /// <summary>
-        /// OnGet() - wil not use IActionResult as is not returning a page, but rather
-        /// is setting the properties that are referenced in the web page
-        /// </summary>
         public void OnGet()
         {
             // Log activity
-            _logger.LogInformation("** Executing Camps ListModel");
+            _logger.LogInformation("** Executing Location ListModel");
             // Local message
-            LocalMessage = "This is the list of all available camps";
+            LocalMessage = "This is the list of all available Locations";
             // Configuration message
             ConfigMessage = _config["CfgMessage"];
 
             try
             {
                 // Retrive all camps from repository, using the SearchTerm coming from teh frontend
-                IEnumerable<Domain.Entities.Camp> domainCamps = _campRepository.GetAllCamps(SearchTerm);
+                IEnumerable<Domain.Entities.Location> domainLocations = _campRepository.GetAllLocations(SearchTerm);
 
                 // Copy data from Domain DTo to App Model
-                Camps = _mapper.Map<CampModel[]>(domainCamps);
+                Locations = _mapper.Map<LocationModel[]>(domainLocations);
             }
             catch
             {
-                _logger.LogError("Unable to retreive Camps");
+                _logger.LogError("Unable to retreive Locations");
             }
         }
     }

@@ -8,9 +8,14 @@ namespace CodeCampApp.Models
 {
     public class CampModel
     {
-       
+        public int Id { get; set; }
+
+        [Required, StringLength(80)]
         public string Name { get; set; }
+
+        [Required, StringLength(10)]
         public string Moniker { get; set; }
+
         public DateTime EventDate { get; set; } = DateTime.MinValue;
         public int Length { get; set; }
 

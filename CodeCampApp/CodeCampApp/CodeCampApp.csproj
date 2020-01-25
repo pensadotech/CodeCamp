@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Folder Include="Api\" />
+    <Folder Include="Pages\Speakers\" />
+    <Folder Include="Pages\Talks\" />
   </ItemGroup>
 
 

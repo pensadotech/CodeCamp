@@ -32,8 +32,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Camps/List">Code Camps</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" 
+                               role="button" data-toggle="dropdown" >
+                                Code Camps
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-page="/Camps/List">Camps</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Locations/List">Locations</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Talks/List">Talks</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Speakers/List">Speakers</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>

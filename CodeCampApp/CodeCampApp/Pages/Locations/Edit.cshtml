@@ -1,0 +1,94 @@
+﻿@* The page will receive an aps-rout-locationId from calling page *@
+@* Important: page is handling the LocationModel, and not Domain.Location *@
+@* NOTE: Add teh null value indicator if this page is used for EDit and ADD operations *@
+@page "{locationId:int?}"
+@model CodeCampApp.Pages.Locations.EditModel
+@{
+    ViewData["Title"] = "Location Edit";
+}
+
+<h1>Location Edit</h1>
+
+<form method="post">
+
+    @* Summarize all errors in the page *@
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @* The id is added to the page to be passed during teh POST operation *@
+    @* to indetify what entity is been modified.  This must be hidden. *@
+    <input type="hidden" asp-for="@Model.Location.Id" />
+
+    @* Location.VenueName *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.VenueName"></label>
+        <input asp-for="@Model.Location.VenueName" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.VenueName"></span>
+    </div>
+
+    @* Location.Address1 *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.Address1"></label>
+        <input asp-for="@Model.Location.Address1" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.Address1"></span>
+    </div>
+
+    @* Location.Address2 *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.Address2"></label>
+        <input asp-for="@Model.Location.Address2" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.Address2"></span>
+    </div>
+
+    @* Location.Address3 *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.Address3"></label>
+        <input asp-for="@Model.Location.Address3" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.Address3"></span>
+    </div>
+
+    @* Location.CityTown *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.CityTown"></label>
+        <input asp-for="@Model.Location.CityTown" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.CityTown"></span>
+    </div>
+
+    @* Location.StateProvince *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.StateProvince"></label>
+        <input asp-for="@Model.Location.StateProvince" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.StateProvince"></span>
+    </div>
+
+    @* Location.PostalCode *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.PostalCode"></label>
+        <input asp-for="@Model.Location.PostalCode" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.PostalCode"></span>
+    </div>
+
+    @* Location.Country *@
+    <div class="form-group">
+        <label asp-for="@Model.Location.Country"></label>
+        <input asp-for="@Model.Location.Country" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Location.Country"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="./List" class="btn btn-primary">Cancel</a>
+
+</form>
+
+@* VS provides this partial view to add realtime response for validaitons *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

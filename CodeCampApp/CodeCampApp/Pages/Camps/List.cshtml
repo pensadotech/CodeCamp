@@ -20,7 +20,7 @@
                 </button>
             </span>
         </div>
-        <small id="SearchHelp" class="form-text text-muted">The code camp that interst you.</small>
+        <small id="SearchHelp" class="form-text text-muted">The code camp that interest you.</small>
     </div>
 </form>
 
@@ -46,6 +46,9 @@
         <partial name="_ListTable" model="camp" />
     }
 </table>
+
+@* Button to add a new element *@
+<a asp-page="./Edit" class="btn btn-primary">Add New</a>
 
 
 @section footer {
