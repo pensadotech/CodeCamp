@@ -7,8 +7,10 @@
 
 <h1>Locations List</h1>
 
-<!-- Variable that comes from appsettngs.json -->
-<p>@Model.ConfigMessage</p>
+@if (Model.ActionMessage != null)
+{
+    <div class="alert alert-danger">@Model.ActionMessage</div>
+}
 
 <form method="get">
     <div class="from-group mb-3">
@@ -27,11 +29,6 @@
         </small>
     </div>
 </form>
-
-@if (Model.ActionMessage != null)
-{
-    <div class="alert alert-danger">@Model.ActionMessage</div>
-}
 
 @* Button to add a new element *@
 <a class="btn btn-primary"
@@ -83,7 +80,11 @@
 
 @section footer {
     <div>
+        <!-- Variable that comes from page controller  -->
         <p>@Model.LocalMessage</p>
+
+        <!-- Variable that comes from appsettngs.json -->
+        <p>@Model.ConfigMessage</p>
     </div>
 }
 

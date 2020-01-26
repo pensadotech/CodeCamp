@@ -2,12 +2,16 @@
 @* Important: page is handling teh LocationModel, and not Domain.Location *@
 
 @page "{locationId:int}"
-@model CodeCampApp.Pages.Locations.DetailModel
+@model CodeCampApp.Pages.Locations.DeleteModel
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = "Location Delete";
 }
 
-<h1>Location Detail</h1>
+<h1>Location Delete</h1>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete @Model.Location.VenueName?
+</div>
 
 <div calss="card">
     <div class="card-body">
@@ -22,9 +26,9 @@
     </div>
 </div>
 
-
-<a class="btn btn-primary" asp-page="./List"> Return to Locations list </a>
-
-<a class="btn btn-primary"asp-page="./Edit" asp-route-locationId="@Model.Location.Id">
-  <i class="fa fa-edit"></i> Edit
-</a>
+@* In Razor pages, we have two default handlers, OnGet and OnPost *@
+@* The POTS operation will be used to take a delete action *@
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes!</button>
+    <a asp-page="./List" class="btn btn-default">Cancel</a>
+</form>
