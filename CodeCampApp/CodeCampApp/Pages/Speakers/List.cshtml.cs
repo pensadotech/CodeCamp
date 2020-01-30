@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CodeCampApp.Pages.Locations
+namespace CodeCampApp.Pages.Speakers
 {
     public class ListModel : PageModel
     {
@@ -21,21 +21,21 @@ namespace CodeCampApp.Pages.Locations
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties ...............................
-        public IEnumerable<LocationModel> Locations { get; set; }
+        public IEnumerable<SpeakerModel> Speakers { get; set; }
 
         // To handle messages
         public string LocalMessage { get; set; }
         public string ConfigMessage { get; set; }
+
         // This message can be seter by another page upon an action
         [TempData]
         public string ActionMessage { get; set; }
-
         // BindProperty works for POST operation by default, 
         // but with get switch can respond to a GET operation
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-        // Constructors .............................
+        // Constructors ......................
         public ListModel(IConfiguration config, ILogger<ListModel> logger,
             IMapper mapper, Domain.Repositories.ICampRepository campRepository)
         {
@@ -45,28 +45,28 @@ namespace CodeCampApp.Pages.Locations
             _campRepository = campRepository;
         }
 
-        // Methods .................................
+        // Methods ..........................
         public void OnGet()
         {
             // Log activity
-            _logger.LogInformation("** Executing Location ListModel");
+            _logger.LogInformation("** Executing Speakers ListModel");
             // Local message
-            LocalMessage = "This is the list of all available Locations";
+            LocalMessage = "This is the list of all available Speakers";
             // Configuration message
             ConfigMessage = _config["CfgMessage"];
 
             try
             {
                 // Retrive all camps from repository, using the SearchTerm coming from teh frontend
-                IEnumerable<Domain.Entities.Location> domainLocations = _campRepository.GetAllLocations(SearchTerm);
+                IEnumerable<Domain.Entities.Speaker> domainSpeakers = _campRepository.GetAllSpeakers(SearchTerm);
 
                 // Copy data from Domain DTo to App Model
-                Locations = _mapper.Map<LocationModel[]>(domainLocations);
+                Speakers = _mapper.Map<SpeakerModel[]>(domainSpeakers);
             }
             catch
             {
-                _logger.LogError("Unable to retreive Locations");
-                LocalMessage = "Unable to retreive Locations";
+                _logger.LogError("Unable to retreive Speakers");
+                LocalMessage = "Unable to retreive Speakers";
             }
         }
     }

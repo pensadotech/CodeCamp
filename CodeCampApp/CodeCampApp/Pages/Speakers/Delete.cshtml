@@ -1,0 +1,39 @@
+﻿@* The page will receive an aps-rout-speakerId from calling page *@
+@* Important: page is handling the SpeakerModel, and not Domain.Speaker *@
+
+@page
+@model CodeCampApp.Pages.Speakers.DeleteModel
+@{
+    ViewData["Title"] = "Speaker Delete";
+}
+
+<h1>Speaker Delete</h1>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete @Model.Speaker.LastName?
+</div>
+
+<div calss="card">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Speaker.FirstName @Model.Speaker.MiddleName @Model.Speaker.LastName</h4>
+        <h6 class="card-text">Name: @Model.Speaker.FirstName</h6>
+        <h6 class="card-text">MiddleName: @Model.Speaker.MiddleName</h6>
+        <h6 class="card-text">LastName: @Model.Speaker.LastName</h6>
+        <h6 class="card-text">Topics:  @Model.Speaker.Topics</h6>
+        <h6 class="card-text">Company: @Model.Speaker.Company</h6>
+        <h6 class="card-text">CompanyUrl: @Model.Speaker.CompanyUrl</h6>
+        <h6 class="card-text">BlogUrl: @Model.Speaker.BlogUrl</h6>
+        <h6 class="card-text">Twitter: @Model.Speaker.Twitter</h6>
+        <h6 class="card-text">GitHub: @Model.Speaker.GitHub</h6>
+        <h6 class="card-text">CityTown: @Model.Speaker.CityTown</h6>
+        <h6 class="card-text">StateProvince: @Model.Speaker.StateProvince</h6>
+    </div>
+</div>
+
+@* In Razor pages, we have two default handlers, OnGet and OnPost *@
+@* The POTS operation will be used to take a delete action *@
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes!</button>
+    <a asp-page="./List" class="btn btn-default">Cancel</a>
+</form>
+

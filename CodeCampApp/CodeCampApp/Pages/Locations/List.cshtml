@@ -1,8 +1,9 @@
 ﻿@* Important: page is handling teh LocationModel, and not Domain.Location *@
+
 @page
 @model CodeCampApp.Pages.Locations.ListModel
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "Locations List";
 }
 
 <h1>Locations List</h1>
@@ -73,18 +74,14 @@
                 </a>
             </td>
         </tr>
-
     }
 </table>
 
 
 @section footer {
-    <div>
-        <!-- Variable that comes from page controller  -->
-        <p>@Model.LocalMessage</p>
-
-        <!-- Variable that comes from appsettngs.json -->
-        <p>@Model.ConfigMessage</p>
+    <div class="myComment">
+        <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
+        <p>@Model.LocalMessage - @Model.ConfigMessage</p>
     </div>
 }
 

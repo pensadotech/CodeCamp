@@ -119,6 +119,7 @@ namespace CodeCamp.Data.DummyData
                 Length = 12
             };
 
+
             // Add camps tp the list
             camps.Add(camp1);
             camps.Add(camp2);
@@ -159,9 +160,40 @@ namespace CodeCamp.Data.DummyData
                 Country = "USA"
             };
 
+            // Location #3
+            var location3 = new Location()
+            {
+                Id = 3,
+                VenueName = "De Chapman University",
+                Address1 = "345 Sand Canyon St",
+                Address2 = "",
+                Address3 = "",
+                CityTown = "Irvine",
+                StateProvince = "CA",
+                PostalCode = "54321",
+                Country = "USA"
+            };
+
+            // Location #4
+            var location4 = new Location()
+            {
+                Id = 4,
+                VenueName = "DeVrey University",
+                Address1 = "345 Alton St",
+                Address2 = "",
+                Address3 = "",
+                CityTown = "Irvine",
+                StateProvince = "CA",
+                PostalCode = "54321",
+                Country = "USA"
+            };
+
+
             // Add locaion to List
             Locations.Add(location1);
             Locations.Add(location2);
+            Locations.Add(location3);
+            Locations.Add(location4);
 
             return Locations;
         }
@@ -228,11 +260,14 @@ namespace CodeCamp.Data.DummyData
                 FirstName = "John",
                 LastName = "Doe",
                 MiddleName = "R",
+                Topics = ".NET Core, Java Script",
                 BlogUrl = "http://JohnDoeBlog.com",
                 Company = "Wilder Minds LLC",
                 CompanyUrl = "http://JohnDoe.com",
                 GitHub = "http://JohnDoe.github.io",
-                Twitter = "@johnDoe"
+                Twitter = "@johnDoe",
+                CityTown = "Irvine",
+                StateProvince= "CA"
             };
 
             // Sepeaker #2
@@ -242,39 +277,48 @@ namespace CodeCamp.Data.DummyData
                 FirstName = "Susan",
                 LastName = "Flowers",
                 MiddleName = "V",
+                Topics = "Java Script, Java",
                 BlogUrl = "http://SusanFlowersBlog.com",
                 Company = "Susan LLC",
                 CompanyUrl = "http://SusanFlowers.com",
                 GitHub = "http://susan.github.io",
-                Twitter = "@SusanFlowers"
+                Twitter = "@SusanFlowers",
+                CityTown = "Tustin",
+                StateProvince = "CA"
             };
 
             // Sepeaker #3
             var speaker3 = new Speaker()
             {
-                Id = 1,
+                Id = 3,
                 FirstName = "John",
                 LastName = "Freak",
                 MiddleName = "S",
+                Topics = "OpenEdge,C#",
                 BlogUrl = "http://JohnFreakBlog.com",
                 Company = "Wilder Minds LLC",
                 CompanyUrl = "http://JohFreak.com",
                 GitHub = "http://JohnFreak.github.io",
-                Twitter = "@JohnFreak"
+                Twitter = "@JohnFreak",
+                CityTown = "Irvine",
+                StateProvince = "CA"
             };
 
             // Sepeaker #4
             var speaker4 = new Speaker()
             {
-                Id = 2,
+                Id = 4,
                 FirstName = "Rosie",
                 LastName = "Lavander",
                 MiddleName = "",
+                Topics = "Java Script, Java",
                 BlogUrl = "http://RosieLavanderBlog.com",
                 Company = "Susan LLC",
                 CompanyUrl = "http://RosieLavander.com",
                 GitHub = "http://RosieLavander.github.io",
-                Twitter = "@RosieLavander"
+                Twitter = "@RosieLavander",
+                CityTown = "Tustin",
+                StateProvince = "CA"
             };
 
 

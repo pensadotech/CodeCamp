@@ -180,6 +180,7 @@ namespace CodeCamp.Data.Repositories
                 // Cast to Object and then to entity
                 Camp camp = (Camp)(object)entity;
 
+                // TODO: complete camp update
                
             }
             else if (objType == typeof(Location))
@@ -208,14 +209,32 @@ namespace CodeCamp.Data.Repositories
                 // Cast to Object and then to entity
                 Talk talk = (Talk)(object)entity;
 
-                
+                // TODO: complete talk update
             }
             else if (objType == typeof(Speaker))
             {
                 // Cast to Object and then to entity
                 Speaker spker = (Speaker)(object)entity;
 
-               
+                // Find elemen in the list
+                var spkerToUpd = GetSpeakerById(spker.Id);
+
+                if(spkerToUpd != null)
+                {
+                    // If element is detected, update it 
+                    spkerToUpd.FirstName = spker.FirstName;
+                    spkerToUpd.LastName = spker.LastName;
+                    spkerToUpd.MiddleName = spker.MiddleName;
+                    spkerToUpd.Topics = spker.Topics;
+                    spkerToUpd.Company = spker.Company;
+                    spkerToUpd.CompanyUrl = spker.CompanyUrl;
+                    spkerToUpd.BlogUrl = spker.BlogUrl;
+                    spkerToUpd.Twitter = spker.Twitter;
+                    spkerToUpd.GitHub = spker.GitHub;
+                    spkerToUpd.CityTown = spker.CityTown;
+                    spkerToUpd.StateProvince = spker.StateProvince;
+                }
+
             }
 
             return entity;

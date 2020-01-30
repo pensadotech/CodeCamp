@@ -1,0 +1,33 @@
+﻿@* The page will receive an aps-rout-speakerId from calling page *@
+@* Important: page is handling teh SpeakerModel, and not Domain.Speaker *@
+
+@page "{speakerId:int}"
+@model CodeCampApp.Pages.Speakers.DetailModel
+@{
+    ViewData["Title"] = "Speaker Detail";
+}
+
+<h1>Speaker Detail</h1>
+
+<div calss="card">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Speaker.FirstName @Model.Speaker.MiddleName @Model.Speaker.LastName</h4>
+        <h6 class="card-text">Name: @Model.Speaker.FirstName</h6>
+        <h6 class="card-text">MiddleName: @Model.Speaker.MiddleName</h6>
+        <h6 class="card-text">LastName: @Model.Speaker.LastName</h6>
+        <h6 class="card-text">Topics:  @Model.Speaker.Topics</h6>
+        <h6 class="card-text">Company: @Model.Speaker.Company</h6>
+        <h6 class="card-text">CompanyUrl: @Model.Speaker.CompanyUrl</h6>
+        <h6 class="card-text">BlogUrl: @Model.Speaker.BlogUrl</h6>
+        <h6 class="card-text">Twitter: @Model.Speaker.Twitter</h6>
+        <h6 class="card-text">GitHub: @Model.Speaker.GitHub</h6>
+        <h6 class="card-text">CityTown: @Model.Speaker.CityTown</h6>
+        <h6 class="card-text">StateProvince: @Model.Speaker.StateProvince</h6>
+    </div>
+</div>
+
+<a class="btn btn-primary" asp-page="./List"> Return to Speaker list </a>
+
+<a class="btn btn-primary" asp-page="./Edit" asp-route-speakerId="@Model.Speaker.Id">
+    <i class="fa fa-edit"></i> Edit
+</a>

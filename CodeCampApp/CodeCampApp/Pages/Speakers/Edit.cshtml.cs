@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CodeCampApp.Pages.Locations
+namespace CodeCampApp.Pages.Speakers
 {
     public class EditModel : PageModel
     {
@@ -24,8 +24,7 @@ namespace CodeCampApp.Pages.Locations
         // Bind property will help populate the Location property upon a POST operation
         // BindProperty works for POST operation by default
         [BindProperty]
-        public LocationModel Location { get; set; }
-
+        public SpeakerModel Speaker { get; set; }
 
         // Construrctors ........................
         public EditModel(IConfiguration config, ILogger<ListModel> logger,
@@ -38,26 +37,26 @@ namespace CodeCampApp.Pages.Locations
         }
 
         // Methods ..............................
-        public IActionResult OnGet(int? locationId)
+        public IActionResult OnGet(int? speakerId)
         {
             // Depending if this program is called from EDIT or ADD
-            // The parameter locationId can have a value or not.
-            // If it does, search for the Location and display it, 
+            // The parameter speakerId can have a value or not.
+            // If it does, search for the Speaker and display it, 
             // otherwise, create a new one and display empty fields
-            if (locationId.HasValue)
+            if (speakerId.HasValue)
             {
                 // Retreive the deail for the selected model 
-                Domain.Entities.Location location = _campRepository.GetLocationById(locationId.Value);
+                Domain.Entities.Speaker spker = _campRepository.GetSpeakerById(speakerId.Value);
 
                 // Copy data from Domain DTo to App Model
-                Location = _mapper.Map<LocationModel>(location);
+                Speaker = _mapper.Map<SpeakerModel>(spker);
             }
             else
             {
-                Location = new LocationModel();
+                Speaker = new SpeakerModel();
             }
 
-            if (Location == null)
+            if (Speaker == null)
             {
                 return RedirectToPage("./NotFound");
             }
@@ -78,28 +77,28 @@ namespace CodeCampApp.Pages.Locations
             }
 
             // Determine if will be an ADD or Update
-            if (Location.Id > 0)
+            if (Speaker.Id > 0)
             {
                 // UPDATE operation
 
                 // Convert Model into Domain entity
-                Domain.Entities.Location locationToUpd = _mapper.Map<Domain.Entities.Location>(Location);
+                Domain.Entities.Speaker spkrToUpd = _mapper.Map<Domain.Entities.Speaker>(Speaker);
 
                 // Update 
-                _campRepository.Update<Domain.Entities.Location>(locationToUpd);
+                _campRepository.Update<Domain.Entities.Speaker>(spkrToUpd);
             }
             else
             {
                 // ADD operation
 
                 // Convert Model into Domain entity
-                Domain.Entities.Location locationToAdd = _mapper.Map<Domain.Entities.Location>(Location);
+                Domain.Entities.Speaker spkrToAdd = _mapper.Map<Domain.Entities.Speaker>(Speaker);
 
                 // Add the location to teh list
-                _campRepository.Add<Domain.Entities.Location>(locationToAdd);
-                               
+                _campRepository.Add<Domain.Entities.Speaker>(spkrToAdd);
+
                 // Copy data from Domain DTO to App Model, to reflect the new ID
-                Location = _mapper.Map<LocationModel>(locationToAdd);
+                Speaker = _mapper.Map<SpeakerModel>(spkrToAdd);
             }
 
             // Commit changes 
@@ -107,12 +106,12 @@ namespace CodeCampApp.Pages.Locations
 
             // Send to the paget that will be redirected, a message through TempData
             // to inform the user about the operation that took place. 
-            TempData["ActionMessage"] = "Location saved!";
+            TempData["ActionMessage"] = "Speaker saved!";
 
             // IMPORTANT: For ADD, EDIT, or DELETE operations allways redirect to a different page
             // Force re-direction to detail page, do not stay in curent page
-            return RedirectToPage("./Detail", new { locationId = this.Location.Id });
-        }
+            return RedirectToPage("./Detail", new { speakerId = this.Speaker.Id });
 
+        }
     }
 }

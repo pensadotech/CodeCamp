@@ -1,0 +1,119 @@
+﻿@* The page will receive an aps-rout-locationId from calling page *@
+@* Important: page is handling the LocationModel, and not Domain.Location *@
+@* NOTE: Add teh null value indicator if this page is used for EDit and ADD operations *@
+
+@page "{speakerId:int?}"
+@model CodeCampApp.Pages.Speakers.EditModel
+@{
+    ViewData["Title"] = "Speaker Edit";
+}
+
+<h1>Speaker Edit</h1>
+
+<form method="post">
+
+    @* Summarize all errors in the page *@
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @* The id is added to the page to be passed during teh POST operation *@
+    @* to indetify what entity is been modified.  This must be hidden. *@
+    <input type="hidden" asp-for="@Model.Speaker.Id" />
+
+    @* Speaker.FirstName *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.FirstName"></label>
+        <input asp-for="@Model.Speaker.FirstName" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.FirstName"></span>
+    </div>
+
+    @* Speaker.LastName *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.LastName"></label>
+        <input asp-for="@Model.Speaker.LastName" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.LastName"></span>
+    </div>
+
+    @* Speaker.MiddleName *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.MiddleName"></label>
+        <input asp-for="@Model.Speaker.MiddleName" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.MiddleName"></span>
+    </div>
+
+    @* Speaker.Topics *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.Topics"></label>
+        <input asp-for="@Model.Speaker.Topics" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.Topics"></span>
+    </div>
+
+    @* Speaker.Company *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.Company"></label>
+        <input asp-for="@Model.Speaker.Company" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.Company"></span>
+    </div>
+
+    @* Speaker.CompanyUrl *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.CompanyUrl"></label>
+        <input asp-for="@Model.Speaker.CompanyUrl" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.CompanyUrl"></span>
+    </div>
+
+    @* Speaker.BlogUrl *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.BlogUrl"></label>
+        <input asp-for="@Model.Speaker.BlogUrl" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.BlogUrl"></span>
+    </div>
+
+    @* Speaker.Twitter *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.Twitter"></label>
+        <input asp-for="@Model.Speaker.Twitter" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.Twitter"></span>
+    </div>
+
+    @* Speaker.GitHub *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.GitHub"></label>
+        <input asp-for="@Model.Speaker.GitHub" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.GitHub"></span>
+    </div>
+
+    @* Speaker.CityTown *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.CityTown"></label>
+        <input asp-for="@Model.Speaker.CityTown" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.CityTown"></span>
+    </div>
+
+    @* Speaker.StateProvince *@
+    <div class="form-group">
+        <label asp-for="@Model.Speaker.StateProvince"></label>
+        <input asp-for="@Model.Speaker.StateProvince" class="form-control" />
+        @* This line is to provide validation to this field *@
+        <span class="text-danger" asp-validation-for="Speaker.StateProvince"></span>
+    </div>
+
+    @* buttons *@
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="./List" class="btn btn-primary">Cancel</a>
+
+</form>
+
+@* VS provides this partial view to add realtime response for validaitons *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

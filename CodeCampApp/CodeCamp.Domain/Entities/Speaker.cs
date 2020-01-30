@@ -12,16 +12,15 @@ namespace CodeCamp.Domain.Entities
     public class Speaker
     {
         public int Id { get; set; }
-
-        [Required, StringLength(50)]
+      
         public string FirstName { get; set; }
-        
-        [Required, StringLength(50)]
+       
         public string LastName { get; set; }
         
         public string MiddleName { get; set; }
 
-        [StringLength(50)]
+        public string Topics { get; set; }
+        
         public string Company { get; set; }
 
         public string CompanyUrl { get; set; }
@@ -31,6 +30,10 @@ namespace CodeCamp.Domain.Entities
         public string Twitter { get; set; }
         
         public string GitHub { get; set; }
+
+        public string CityTown { get; set; }
+
+        public string StateProvince { get; set; }
 
         // Parent releationship
         // Camp is the parent class,however aslo add the ID to make 

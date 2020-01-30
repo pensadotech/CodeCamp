@@ -1,0 +1,88 @@
+﻿@* Important: page is handling teh SpeakerModel, and not Domain.Speaker *@
+
+@page
+@model CodeCampApp.Pages.Speakers.ListModel
+@{
+    ViewData["Title"] = "Speakers List";
+}
+
+<h1>Speakers List</h1>
+
+@if (Model.ActionMessage != null)
+{
+    <div class="alert alert-danger">@Model.ActionMessage</div>
+}
+
+<form method="get">
+    <div class="from-group mb-3">
+        <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search by Last name"
+                   asp-for="SearchTerm" />
+            <span class="input-group-append">
+                <button class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <small id="SearchHelp"
+               class="form-text text-muted">
+            The code camp Speaker that interest you.
+        </small>
+    </div>
+</form>
+
+@* Button to add a new element *@
+<a class="btn btn-primary"
+   asp-page="./Edit">
+    <i class="fa fa-edit"></i> Add New
+</a>
+
+<div>
+    <table class="table">
+        @* Table header *@
+        <tr>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Topics</th>
+            <th>CityTown</th>
+            <th>StateProvince</th>
+        </tr>
+
+        @* Use a partial view to render the table *@
+        @foreach (var spker in Model.Speakers)
+        {
+            <tr>
+                <td>@spker.LastName</td>
+                <td>@spker.FirstName</td>
+                <td>@spker.Topics</td>
+                <td>@spker.CityTown</td>
+                <td>@spker.StateProvince</td>
+                <td>
+                    <a class="btn-lg"
+                       asp-page="./Detail"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-search-plus"></i> Detail
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Edit"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Delete"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+
+@section footer {
+    <div class="myComment">
+        <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
+        <p>@Model.LocalMessage - @Model.ConfigMessage</p>
+    </div>
+}
