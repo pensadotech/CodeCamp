@@ -59,15 +59,39 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Fix background during scrolling */
+    background-attachment: fixed;
+    /* Use scalable background image (cross borwser) */
+    background-image: url("../images/technology.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #003A6C;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    line-height: 50px; /* Vertically center the text there */
     font-size: 12px;
     color: green;
 }
+
+.wrapper {
+    min-height: 400px;
+}
+
+.alert {
+    font-size: 10px;
+    line-height: 10px;
+}
+
+.table {
+    background-color: #DBE9F4;
+}
+
+

@@ -34,49 +34,56 @@
 @* Button to add a new element *@
 <a class="btn btn-primary"
    asp-page="./Edit">
-    <i class="fa fa-edit"></i> Add New
+    <i class="fas fa-plus-circle"></i>
+    Add
 </a>
 
 <div>
-    <table class="table">
+    <table class="table table-striped table-hover table-sm">
         @* Table header *@
-        <tr>
-            <th>LastName</th>
-            <th>FirstName</th>
-            <th>Topics</th>
-            <th>CityTown</th>
-            <th>StateProvince</th>
-        </tr>
-
-        @* Use a partial view to render the table *@
-        @foreach (var spker in Model.Speakers)
-        {
+        <thead>
             <tr>
+                <th> </th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>Topics</th>
+                <th>CityTown</th>
+                <th>StateProvince</th>
+            </tr>
+        </thead>
+
+        <tbody id="list-data">
+
+            @* Use a partial view to render the table *@
+            @foreach (var spker in Model.Speakers)
+            {
+            <tr>
+                <td>
+                    <a class="btn-lg"
+                       asp-page="./Detail"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-search-plus"></i>
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Edit"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Delete"
+                       asp-route-speakerId="@spker.Id">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
                 <td>@spker.LastName</td>
                 <td>@spker.FirstName</td>
                 <td>@spker.Topics</td>
                 <td>@spker.CityTown</td>
                 <td>@spker.StateProvince</td>
-                <td>
-                    <a class="btn-lg"
-                       asp-page="./Detail"
-                       asp-route-speakerId="@spker.Id">
-                        <i class="fa fa-search-plus"></i> Detail
-                    </a>
-                    <a class="btn-lg"
-                       asp-page="./Edit"
-                       asp-route-speakerId="@spker.Id">
-                        <i class="fa fa-edit"></i> Edit
-                    </a>
-                    <a class="btn-lg"
-                       asp-page="./Delete"
-                       asp-route-speakerId="@spker.Id">
-                        <i class="fa fa-trash"></i> Delete
-                    </a>
-                </td>
             </tr>
 
-        }
+            }
+        </tbody>
     </table>
 </div>
 

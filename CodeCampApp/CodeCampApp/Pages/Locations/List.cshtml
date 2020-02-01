@@ -34,47 +34,55 @@
 @* Button to add a new element *@
 <a class="btn btn-primary"
    asp-page="./Edit">
-    <i class="fa fa-edit"></i> Add New
+    <i class="fas fa-plus-circle"></i>
+    Add
 </a>
 
-<table class="table">
+<table class="table table-striped table-hover table-sm">
     @* Table header *@
-    <tr>
-        <th>VenueName</th>
-        <th>CityTown</th>
-        <th>StateProvince</th>
-        <th>PostalCode</th>
-        <th>Country</th>
-    </tr>
-
-    @* Use a partial view to render the table *@
-    @foreach (var loc in Model.Locations)
-    {
+    <thead>
         <tr>
-            <td>@loc.VenueName</td>
-            <td>@loc.CityTown</td>
-            <td>@loc.StateProvince</td>
-            <td>@loc.PostalCode</td>
-            <td>@loc.Country</td>
-            <td>
-                <a class="btn-lg"
-                   asp-page="./Detail"
-                   asp-route-locationId="@loc.Id">
-                    <i class="fa fa-search-plus"></i> Detail
-                </a>
-                <a class="btn-lg"
-                   asp-page="./Edit"
-                   asp-route-locationId="@loc.Id">
-                    <i class="fa fa-edit"></i> Edit
-                </a>
-                <a class="btn-lg"
-                   asp-page="./Delete"
-                   asp-route-locationId="@loc.Id">
-                    <i class="fa fa-trash"></i> Delete
-                </a>
-            </td>
+            <th> </th>
+            <th>VenueName</th>
+            <th>CityTown</th>
+            <th>StateProvince</th>
+            <th>PostalCode</th>
+            <th>Country</th>
         </tr>
-    }
+    </thead>
+
+    <tbody id="list-data">
+
+        @* Use a partial view to render the table *@
+        @foreach (var loc in Model.Locations)
+        {
+            <tr>
+                <td>
+                    <a class="btn-lg"
+                       asp-page="./Detail"
+                       asp-route-locationId="@loc.Id">
+                        <i class="fa fa-search-plus"></i>
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Edit"
+                       asp-route-locationId="@loc.Id">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn-lg"
+                       asp-page="./Delete"
+                       asp-route-locationId="@loc.Id">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+                <td>@loc.VenueName</td>
+                <td>@loc.CityTown</td>
+                <td>@loc.StateProvince</td>
+                <td>@loc.PostalCode</td>
+                <td>@loc.Country</td>
+
+            </tr>
+        }
+    </tbody>
 </table>
 
 
