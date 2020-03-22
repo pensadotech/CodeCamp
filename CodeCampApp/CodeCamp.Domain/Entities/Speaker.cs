@@ -35,6 +35,8 @@ namespace CodeCamp.Domain.Entities
 
         public string StateProvince { get; set; }
 
+        public string ProfileImage { get; set; }
+
         // Parent releationship
         // Camp is the parent class,however aslo add the ID to make 
         // life easy when fecthing the parent from the child class

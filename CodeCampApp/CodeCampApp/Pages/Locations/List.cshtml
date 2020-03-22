@@ -3,7 +3,7 @@
 @page
 @model CodeCampApp.Pages.Locations.ListModel
 @{
-    ViewData["Title"] = "Locations List";
+    ViewData["Title"] = "Code camp - Locations List";
 }
 
 <h1>Locations List</h1>
@@ -13,83 +13,127 @@
     <div class="alert alert-danger">@Model.ActionMessage</div>
 }
 
-<form method="get">
-    <div class="from-group mb-3">
-        <div class="input-group">
-            <input type="search" class="form-control" placeholder="Search by Venue name"
-                   asp-for="SearchTerm" />
-            <span class="input-group-append">
-                <button class="btn btn-default">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
+<div class="container">
+
+    <!-- row 1 -->
+    <div class="row">
+        <div class="col-sm ml-0">
+            <div class="d-flex flex-row">
+                <div class="pr-4">
+                    @* Button to add a new element *@
+                    <a class="btn btn-primary addbtn"
+                       asp-page="./Edit">
+                        <i class="fas fa-plus-circle"></i>
+                        Add
+                    </a>
+                </div>
+                <div class="p-0">
+                    <form method="get">
+                        <div class="from-group mb-2">
+                            <div class="input-group">
+                                <input type="search" class="form-control " placeholder="Search by Venue name"
+                                       asp-for="SearchTerm" />
+                                <span class="input-group-append">
+                                    <button class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <small id="SearchHelp"
-               class="form-text text-muted">
-            The code camp  Location that interest you.
-        </small>
     </div>
-</form>
 
-@* Button to add a new element *@
-<a class="btn btn-primary"
-   asp-page="./Edit">
-    <i class="fas fa-plus-circle"></i>
-    Add
-</a>
+    <div class="row">
 
-<table class="table table-striped table-hover table-sm">
-    @* Table header *@
-    <thead>
-        <tr>
-            <th> </th>
-            <th>VenueName</th>
-            <th>CityTown</th>
-            <th>StateProvince</th>
-            <th>PostalCode</th>
-            <th>Country</th>
-        </tr>
-    </thead>
-
-    <tbody id="list-data">
-
-        @* Use a partial view to render the table *@
+        <!-- Dynamic elements goes here -->
         @foreach (var loc in Model.Locations)
         {
-            <tr>
-                <td>
-                    <a class="btn-lg"
-                       asp-page="./Detail"
-                       asp-route-locationId="@loc.Id">
-                        <i class="fa fa-search-plus"></i>
-                    </a>
-                    <a class="btn-lg"
-                       asp-page="./Edit"
-                       asp-route-locationId="@loc.Id">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <a class="btn-lg"
-                       asp-page="./Delete"
-                       asp-route-locationId="@loc.Id">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
-                <td>@loc.VenueName</td>
-                <td>@loc.CityTown</td>
-                <td>@loc.StateProvince</td>
-                <td>@loc.PostalCode</td>
-                <td>@loc.Country</td>
+            <div class="col-sm-6">
 
-            </tr>
+                @* Card *@
+                <div class="card text-white mb-2 container bg-info cardloclist">
+
+                    @* Card-row *@
+                    <div class="row">
+
+                        @* Colum - A *@
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <img class="card-img-top imgRnd10 imageShadow cardloclistimg" 
+                                     src="~/images/@loc.ProfileImage" alt="Card image cap">
+                            </div>
+                            <div class="row">
+                                <a class="btn-lg" data-toggle="tooltip" title="Detail"
+                                   asp-page="./Detail"
+                                   asp-route-locationId="@loc.Id">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
+                                <a class="btn-lg" data-toggle="tooltip" title="Edit"
+                                   asp-page="./Edit"
+                                   asp-route-locationId="@loc.Id">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn-lg"
+                                   asp-page="./Delete" data-toggle="tooltip" title="Delete"
+                                   asp-route-locationId="@loc.Id">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        @* col-A *@
+
+                        @* Colum - B *@
+                        <div class="col-sm-6">
+
+                            <div class="card-body cardloclistbody">
+                                <div class="row">
+                                    <h5 class="card-title cardloclistVenue">@loc.VenueName</h5>
+                                </div>
+                                <div class="row">
+                                    <h6 class="card-text cardloclistaddres"> @loc.Address1 </h6>
+                                </div>
+                                <div class="row">
+                                    <h6 class="card-text cardloclistaddres"> @loc.Address2</h6>
+                                </div>
+                                <div class="row">
+                                    <h6 class="card-text cardloclistcitystate"> @loc.CityTown,@loc.StateProvince @loc.PostalCode </h6>
+                                </div>
+                                <div class="row">
+                                    <h6 class="card-text cardloclistcountry"> @loc.Country </h6>
+                                </div>
+                                <div class="row">
+                                    <p class="card-text cardloclistphone">Phone: @loc.ContactPhone</p>
+                                </div>
+
+                            </div>
+                            @*  <div class="card-body"> *@
+
+                        </div>
+                        @* col-B *@
+
+                    </div>
+                    @* card-Row *@
+
+                </div>
+                @* Card *@
+
+            </div>
         }
-    </tbody>
-</table>
+
+
+    </div>
+    @*  <div class="row d-flex justify-content-center"> *@
+
+
+
+</div>
+
 
 
 @section footer {
-    <div class="myComment">
-        <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
-        <p>@Model.LocalMessage - @Model.ConfigMessage</p>
-    </div>
+    <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
 }
 

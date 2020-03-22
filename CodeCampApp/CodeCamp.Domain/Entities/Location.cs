@@ -14,11 +14,12 @@ namespace CodeCamp.Domain.Entities
         public string VenueName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-        public string Address3 { get; set; }
         public string CityTown { get; set; }
         public string StateProvince { get; set; }
         public string PostalCode { get; set; }
         public string Country { get; set; }
+        public string ProfileImage { get; set; }
+        public string ContactPhone { get; set; }
 
         // Parent releationship
         // Camp is the parent class,however aslo add the ID to make 

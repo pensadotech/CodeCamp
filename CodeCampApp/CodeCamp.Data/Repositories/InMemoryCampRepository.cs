@@ -197,7 +197,6 @@ namespace CodeCamp.Data.Repositories
                     locToUpd.VenueName = loc.VenueName;
                     locToUpd.Address1 = loc.Address1;
                     locToUpd.Address2 = loc.Address2;
-                    locToUpd.Address3 = loc.Address3;
                     locToUpd.CityTown = loc.CityTown;
                     locToUpd.StateProvince = loc.StateProvince;
                     locToUpd.PostalCode = loc.PostalCode;

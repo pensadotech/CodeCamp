@@ -139,11 +139,12 @@ namespace CodeCamp.Data.DummyData
                 VenueName = "Convention Center",
                 Address1 = "123 Main Street",
                 Address2 = "",
-                Address3 = "",
                 CityTown = "Irvine",
                 StateProvince = "CA",
                 PostalCode = "12345",
-                Country = "USA"
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
             };
 
             // Location #2
@@ -152,12 +153,13 @@ namespace CodeCamp.Data.DummyData
                 Id = 2,
                 VenueName = "UCI extension",
                 Address1 = "345 Protola Street",
-                Address2 = "",
-                Address3 = "",
+                Address2 = "Building 303, Suite 200",
                 CityTown = "Tustin",
                 StateProvince = "CA",
                 PostalCode = "54321",
-                Country = "USA"
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
             };
 
             // Location #3
@@ -166,12 +168,13 @@ namespace CodeCamp.Data.DummyData
                 Id = 3,
                 VenueName = "De Chapman University",
                 Address1 = "345 Sand Canyon St",
-                Address2 = "",
-                Address3 = "",
+                Address2 = "Building A, Suite 400",
                 CityTown = "Irvine",
                 StateProvince = "CA",
                 PostalCode = "54321",
-                Country = "USA"
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
             };
 
             // Location #4
@@ -180,12 +183,43 @@ namespace CodeCamp.Data.DummyData
                 Id = 4,
                 VenueName = "DeVrey University",
                 Address1 = "345 Alton St",
-                Address2 = "",
-                Address3 = "",
+                Address2 = "Building A, Suite 400",
                 CityTown = "Irvine",
                 StateProvince = "CA",
                 PostalCode = "54321",
-                Country = "USA"
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
+            };
+
+            // Location #5
+            var location5 = new Location()
+            {
+                Id = 5,
+                VenueName = "Champan University",
+                Address1 = "345 Sand Canyon St",
+                Address2 = "Building A, Suite 400",
+                CityTown = "Irvine",
+                StateProvince = "CA",
+                PostalCode = "54321",
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
+            };
+
+            // Location #6
+            var location6 = new Location()
+            {
+                Id = 6,
+                VenueName = "Viola University",
+                Address1 = "345 Alton St",
+                Address2 = "Building A, Suite 400",
+                CityTown = "Irvine",
+                StateProvince = "CA",
+                PostalCode = "54321",
+                Country = "USA",
+                ProfileImage = "dumyLocImg.jpg",
+                ContactPhone = "949-123-1234"
             };
 
 
@@ -194,6 +228,8 @@ namespace CodeCamp.Data.DummyData
             Locations.Add(location2);
             Locations.Add(location3);
             Locations.Add(location4);
+            Locations.Add(location5);
+            Locations.Add(location6);
 
             return Locations;
         }

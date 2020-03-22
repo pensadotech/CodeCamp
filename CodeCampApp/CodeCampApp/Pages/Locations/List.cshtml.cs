@@ -51,7 +51,7 @@ namespace CodeCampApp.Pages.Locations
             // Log activity
             _logger.LogInformation("** Executing Location ListModel");
             // Local message
-            LocalMessage = "This is the list of all available Locations";
+            LocalMessage = "List of available Locations";
             // Configuration message
             ConfigMessage = _config["CfgMessage"];
 

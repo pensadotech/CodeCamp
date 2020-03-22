@@ -18,8 +18,6 @@ namespace CodeCampApp.Models
 
         public string Address2 { get; set; }
         
-        public string Address3 { get; set; }
-
         [Required, StringLength(150)]
         public string CityTown { get; set; }
 
@@ -30,5 +28,9 @@ namespace CodeCampApp.Models
         public string PostalCode { get; set; }
 
         public string Country { get; set; }
+
+        public string ProfileImage { get; set; }
+
+        public string ContactPhone { get; set; }
     }
 }

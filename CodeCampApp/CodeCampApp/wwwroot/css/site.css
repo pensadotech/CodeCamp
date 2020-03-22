@@ -1,64 +1,10 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
+    /* Remove margins and padding around content */
+    margin: 0;
+    padding: 0;
     /* Fix background during scrolling */
     background-attachment: fixed;
     /* Use scalable background image (cross borwser) */
@@ -66,32 +12,233 @@ body {
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    color: #003A6C;
+    color: whitesmoke;
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 50px; /* Vertically center the text there */
-    font-size: 12px;
-    color: green;
+.header {
+    /* no special considerations were added */
 }
 
-.wrapper {
-    min-height: 400px;
+.footer {
+    /* Sticky footer: This will fix the footer to the bottom of the page */
+    /* but if body is larger than page teh footer overlaps it */
+    /* instead of having a sticky footter control the min height for body*/
+    /* this will make it look more natural */
+    /*position: fixed;*/
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 40px;
 }
+
+/* Control links behavior ......................*/
+a {
+    color: whitesmoke;
+}
+
+.navbar-nav a:hover {
+    font-weight: bold;
+    color: white;
+}
+
+.dropdown-menu a:hover {
+    color: darkblue;
+    font-weight: bold;
+}
+
+.navbar-brand a:hover {
+    background-color: lightblue;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+/* Mian log and coprorate name ..........................*/
+.brandimage {
+    width: 60px;
+}
+
+.brandname {
+    /* force color to avoid link selection to change color*/
+    color: whitesmoke;
+    margin-left: 3px;
+}
+
+
+.bodycontents {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    min-height: 600px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.bodywraper {
+    margin: 10px 5px 10px 5px;
+    min-height: 590px;
+    /*opacity: 0.7;*/
+    padding-left: 15px;
+    padding-right: 15px;
+    /*background-color: black;*/
+
+    /*border: solid 1px green;*/
+}
+
+.elementCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Card properties ....................*/
+.cardloclist {
+    min-width: 300px;
+    min-height: 205px;
+}
+
+.cardloclistimg {
+    width: 85%;
+    padding: 2%;
+    margin: 5% 5% 0% 5%;
+}
+
+.cardloclistbody {
+
+}
+
+.cardloclistVenue {
+    color: darkblue;
+}
+
+.cardloclistaddres, .cardloclistcitystate {
+    color: lightblue;
+}
+
+.cardloclistcountry {
+    font-weight: bold;
+    color: lightgreen;
+}
+
+.cardloclistphone {
+ margin-top: 2%;
+}
+
+/* Tables properties ...................*/
+.table {
+    background-color: #DBE9F4;
+    color: darkblue;
+}
+
+.table a {
+  /*color: #0366d6;*/
+  color: darkblue;
+}
+
+
+
+/* Test borders .......................*/
+.redborder {
+    border: solid 1px red;
+}
+
+.blueborder {
+    border: solid 1px blue;
+}
+
+.greenborder {
+    border: solid 1px green;
+}
+
+
 
 .alert {
     font-size: 10px;
     line-height: 10px;
 }
 
-.table {
-    background-color: #DBE9F4;
+/* Image utilities .......................*/
+.imgRnd10 {
+    /* Rounded image corners */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
+.imageShadow {
+    /* Add drop shadow */
+    -webkit-box-shadow: 2px 7px 7px 2px #DBE9F4;
+    -moz-box-shadow: 2px 7px 7px 2px #DBE9F4;
+    box-shadow: 2px 7px 7px 2px #DBE9F4;
+}
 
+/* Media queries .......................*/
+/* 
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+    .searchfield {
+        width: 200px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .cardloclist {
+        min-width: 220px;
+        min-height: 230px;
+    }
+
+    .cardloclistbody h5 {
+        font-size: 12px;
+    }
+    .cardloclistbody h6 {
+        font-size: 12px;
+    }
+
+    .cardloclistbody p {
+        font-size: 10px;
+    }
+
+   
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .cardloclist {
+        min-width: 320px;
+        min-height: 250px;
+    }
+
+    .cardloclistbody h5 {
+        font-size: 16px;
+    }
+
+    .cardloclistbody h6 {
+        font-size: 14px;
+    }
+
+    .cardloclistbody p {
+        font-size: 12px;
+    }
+    
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

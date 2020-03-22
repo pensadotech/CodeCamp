@@ -41,5 +41,7 @@ namespace CodeCampApp.Models
 
         [Required, StringLength(50)]
         public string StateProvince { get; set; }
+
+        public string ProfileImage { get; set; }
     }
 }
