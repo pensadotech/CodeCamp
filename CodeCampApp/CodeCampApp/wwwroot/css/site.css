@@ -97,16 +97,17 @@ a:visited {
 }
 
 
-/* Card on list */
+/* Card on list .......................................*/
 .cardloclist {
     min-width: 300px;
-    min-height: 205px;
+    min-height: 240px;
 }
 
 .cardloclistimg {
-    width: 85%;
     padding: 2%;
     margin: 5% 5% 0% 5%;
+    width: 180px;
+    height: 130px;
 }
 
 .cardloclistimgSml {
@@ -136,7 +137,7 @@ a:visited {
  margin-top: 2%;
 }
 
-/* Card detail and edit */
+/* Card detail and edit ..............................*/
 .cardimgHdr {
     margin: 2% 0% 5% 0%;
     width: 280px;
@@ -153,8 +154,7 @@ a:visited {
 }
 
 
-
-/* Tables properties ...................*/
+/* Tables properties ..........................*/
 .table {
     background-color: #DBE9F4;
     color: darkblue;
@@ -166,7 +166,7 @@ a:visited {
 }
 
 
-/* Test borders .......................*/
+/* Test borders ..............................*/
 .redborder {
     border: solid 1px red;
 }
@@ -217,6 +217,12 @@ No media query since this is the default in Bootstrap because it is "mobile firs
     .searchfield {
         width: 200px;
     }
+
+    .cardimgHdr {
+        margin: 2% 0% 5% 0%;
+        width: 220px;
+        height: 200px;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -238,6 +244,18 @@ No media query since this is the default in Bootstrap because it is "mobile firs
         font-size: 10px;
     }
 
+    .cardloclistimg {
+        padding: 2%;
+        margin: 2% 2% 0% 2%;
+        width: 100px;
+        height: 80px;
+    }
+
+    .cardimgHdr {
+        margin: 10% 0% 7% 0%;
+        width: 140px;
+        height: 120px;
+    }
    
 }
 
@@ -260,13 +278,28 @@ No media query since this is the default in Bootstrap because it is "mobile firs
     .cardloclistbody p {
         font-size: 12px;
     }
+
+    .cardloclistimg {
+        padding: 2%;
+        margin: 5% 5% 0% 5%;
+        width: 120px;
+        height: 100px;
+    }
+
+    .cardimgHdr {
+        margin: 2% 0% 5% 0%;
+        width: 220px;
+        height: 200px;
+    }
     
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
 }

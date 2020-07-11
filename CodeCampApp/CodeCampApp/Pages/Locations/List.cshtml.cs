@@ -72,9 +72,10 @@ namespace CodeCampApp.Pages.Locations
                     if (mLoc != null )
                     {
                         string imageBase64Data = null;
-                        string imageDataURL = "https://via.placeholder.com/200";
+                        //string imageDataURL = "https://via.placeholder.com/200";
+                        string imageDataURL = @"..\images\dumyLocImg.jpg";
 
-                        if(dLoc.ProfileImageData != null)
+                        if (dLoc.ProfileImageData != null)
                         {
                             imageBase64Data = Convert.ToBase64String(dLoc.ProfileImageData);
                             imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);

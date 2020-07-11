@@ -43,8 +43,9 @@ namespace CodeCampApp.Pages.Locations
         // Methods ..............................
         public IActionResult OnGet(int? locationId)
         {
-            string imageBase64Data = null;
-            string imageDataURL = "https://via.placeholder.com/200";
+
+            //string imageDataURL = "https://via.placeholder.com/200";
+            string imageDataURL = @"..\..\images\dumyLocImg.jpg";
 
             // Depending if this program is called from EDIT or ADD
             // The parameter locationId can have a value or not.
@@ -63,7 +64,7 @@ namespace CodeCampApp.Pages.Locations
                 {
                     if (domainLocation.ProfileImageData != null)
                     {
-                        imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
+                        string imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
                         imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
                     }
                 }
@@ -108,6 +109,14 @@ namespace CodeCampApp.Pages.Locations
                 // Convert Model into Domain entity
                 // Note: Auto mapping does not include image filename and data
                 domainLocationToAddOrUpd = _mapper.Map<Domain.Entities.Location>(LocationModel);
+
+                // If not image was selected. restor the current on file
+                if (LocationModel.ProfileImageFormFile == null)
+                {
+                    var domainLocOld = _campRepository.GetLocationById(LocationModel.Id);
+                    domainLocationToAddOrUpd.ProfileImageFilename = domainLocOld.ProfileImageFilename;
+                    domainLocationToAddOrUpd.ProfileImageData = domainLocOld.ProfileImageData;
+                }
             }
             else
             {

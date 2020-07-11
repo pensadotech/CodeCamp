@@ -43,14 +43,14 @@ namespace CodeCampApp.Pages.Locations
             // Note: Auto mapping does not include image filename and data
             LocationModel = _mapper.Map<LocationModel>(domainLocation);
 
-            if (LocationModel == null)
+            if (LocationModel != null)
             {
-                string imageBase64Data = null;
-                string imageDataURL = "https://via.placeholder.com/200";
+                //string imageDataURL = "https://via.placeholder.com/200";
+                string imageDataURL = @"..\..\images\dumyLocImg.jpg";
 
                 if (domainLocation.ProfileImageData != null)
                 {
-                    imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
+                    string imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
                     imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
                 }
 
