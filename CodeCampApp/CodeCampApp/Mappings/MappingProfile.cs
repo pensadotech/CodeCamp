@@ -34,7 +34,9 @@ namespace CodeCampApp.Mappings
             // Map Domain.Location to App.LocationModel
             // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Location, LocationModel>()
-              .ReverseMap();
+              .ReverseMap()
+              .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
+              .ForMember(t => t.ProfileImageData, opt => opt.Ignore());
 
             // Map Domain.Talk to App.TalkModel
             // Example for a mapping ignoring to populate Parent and Children objects

@@ -143,7 +143,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "12345",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 
@@ -158,7 +159,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 
@@ -173,7 +175,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 
@@ -188,7 +191,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 
@@ -203,7 +207,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 
@@ -218,7 +223,8 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImage = "dumyLocImg.jpg",
+                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
 

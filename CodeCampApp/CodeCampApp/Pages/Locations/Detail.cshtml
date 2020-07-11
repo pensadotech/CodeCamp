@@ -4,21 +4,30 @@
 @page "{locationId:int}"
 @model CodeCampApp.Pages.Locations.DetailModel
 @{
-    ViewData["Title"] = "LocationDetail";
+    ViewData["Title"] = "Location Detail";
 }
 
 <h1>Location Detail</h1>
 
-<div calss="card">
-    <div class="d-flex flex-row">
-        <div class="cardimg">
-            <img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">
-        </div>
-        <div class="card-body">
-            <h4 class="card-title">@Model.Location.VenueName</h4>
-            <h6 class="card-text">Address: @Model.Location.Address1,  @Model.Location.Address2</h6>
-            <h6 class="card-text"> @Model.Location.CityTown, @Model.Location.StateProvince  @Model.Location.PostalCode</h6>
-            <h6 class="card-text"> @Model.Location.Country</h6>
+<div class="card bg-info mb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="cardimg ">
+                    @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                    <img class="card-img-top imgRnd10 imageShadow cardimgHdr"
+                         src="@Model.LocationModel.ProfileImageFilename"
+                         alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card-body">
+                    <h3 class="card-title cardLocTitleBlue">@Model.LocationModel.VenueName</h3>
+                    <h5 class="card-text">Address: @Model.LocationModel.Address1,  @Model.LocationModel.Address2</h5>
+                    <h5 class="card-text"> @Model.LocationModel.CityTown, @Model.LocationModel.StateProvince  @Model.LocationModel.PostalCode</h5>
+                    <h5 class="card-text"> @Model.LocationModel.Country</h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -26,6 +35,6 @@
 
 <a class="btn btn-primary" asp-page="./List"> Return to Locations list </a>
 
-<a class="btn btn-primary"asp-page="./Edit" asp-route-locationId="@Model.Location.Id">
+<a class="btn btn-primary"asp-page="./Edit" asp-route-locationId="@Model.LocationModel.Id">
   <i class="fa fa-edit"></i> Edit
 </a>

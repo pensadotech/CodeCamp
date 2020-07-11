@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace CodeCampApp.Pages.Locations
 {
@@ -21,7 +22,7 @@ namespace CodeCampApp.Pages.Locations
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties ...............................
-        public IEnumerable<LocationModel> Locations { get; set; }
+        public IEnumerable<LocationModel> LocationModels { get; set; }
 
         // To handle messages
         public string LocalMessage { get; set; }
@@ -60,8 +61,30 @@ namespace CodeCampApp.Pages.Locations
                 // Retrive all camps from repository, using the SearchTerm coming from teh frontend
                 IEnumerable<Domain.Entities.Location> domainLocations = _campRepository.GetAllLocations(SearchTerm);
 
-                // Copy data from Domain DTo to App Model
-                Locations = _mapper.Map<LocationModel[]>(domainLocations);
+                // Copy data from Domain Entity to App Model
+                // Note: Auto mapping does not include image filename and data
+                LocationModels = _mapper.Map<LocationModel[]>(domainLocations);
+                                
+                // Mapp manually the image filename and data
+                foreach(var dLoc in domainLocations)
+                {
+                    var mLoc = LocationModels.SingleOrDefault(l => l.Id == dLoc.Id);
+                    if (mLoc != null )
+                    {
+                        string imageBase64Data = null;
+                        string imageDataURL = "https://via.placeholder.com/200";
+
+                        if(dLoc.ProfileImageData != null)
+                        {
+                            imageBase64Data = Convert.ToBase64String(dLoc.ProfileImageData);
+                            imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                        }
+
+                        mLoc.ProfileImageFilename = imageDataURL;
+                        mLoc.ProfileImageFormFile = null;
+                    }
+                }
+
             }
             catch
             {

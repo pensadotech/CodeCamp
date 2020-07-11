@@ -49,7 +49,7 @@
     <div class="row">
 
         <!-- Dynamic elements goes here -->
-        @foreach (var loc in Model.Locations)
+        @foreach (var loc in Model.LocationModels)
         {
             <div class="col-sm-6">
 
@@ -62,8 +62,12 @@
                         @* Colum - A *@
                         <div class="col-sm-6">
                             <div class="row">
-                                <img class="card-img-top imgRnd10 imageShadow cardloclistimg" 
-                                     src="~/images/@loc.ProfileImage" alt="Card image cap">
+                                <a class="btn-lg" data-toggle="tooltip" title="Detail"
+                                   asp-page="./Detail"
+                                   asp-route-locationId="@loc.Id">
+                                    <img class="card-img-top imgRnd10 imageShadow cardloclistimg"
+                                         src="@loc.ProfileImageFilename" alt="Card image cap">
+                                </a>
                             </div>
                             <div class="row">
                                 <a class="btn-lg" data-toggle="tooltip" title="Detail"
@@ -90,7 +94,7 @@
 
                             <div class="card-body cardloclistbody">
                                 <div class="row">
-                                    <h5 class="card-title cardloclistVenue">@loc.VenueName</h5>
+                                    <h5 class="card-title cardloclistVenue cardLocTitleBlue">@loc.VenueName</h5>
                                 </div>
                                 <div class="row">
                                     <h6 class="card-text cardloclistaddres"> @loc.Address1 </h6>
@@ -127,13 +131,9 @@
     </div>
     @*  <div class="row d-flex justify-content-center"> *@
 
-
-
 </div>
 
 
-
 @section footer {
-    <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
+  List - 
 }
-

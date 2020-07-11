@@ -21,7 +21,7 @@ namespace CodeCampApp.Pages.Locations
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties .....................................
-        public LocationModel Location { get; set; }
+        public LocationModel LocationModel { get; set; }
 
         // Constructors ....................................
         public DeleteModel(IConfiguration config, ILogger<ListModel> logger,
@@ -37,12 +37,27 @@ namespace CodeCampApp.Pages.Locations
         public IActionResult OnGet(int locationId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Location location = _campRepository.GetLocationById(locationId);
+            Domain.Entities.Location domainLocation = _campRepository.GetLocationById(locationId);
 
             // Copy data from Domain DTo to App Model
-            Location = _mapper.Map<LocationModel>(location);
+            // Note: Auto mapping does not include image filename and data
+            LocationModel = _mapper.Map<LocationModel>(domainLocation);
 
-            if (Location == null)
+            if (LocationModel == null)
+            {
+                string imageBase64Data = null;
+                string imageDataURL = "https://via.placeholder.com/200";
+
+                if (domainLocation.ProfileImageData != null)
+                {
+                    imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                }
+
+                LocationModel.ProfileImageFilename = imageDataURL;
+                LocationModel.ProfileImageFormFile = null;
+            }
+            else
             {
                 return RedirectToPage("./NotFound");
             }
@@ -55,20 +70,21 @@ namespace CodeCampApp.Pages.Locations
         public IActionResult OnPost(int locationId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Location location = _campRepository.GetLocationById(locationId);
+            Domain.Entities.Location domainLocation = _campRepository.GetLocationById(locationId);
 
-            // Retreive the deail for the selected model 
-            location = _campRepository.Delete<Domain.Entities.Location>(location);
+            // Delete selected record 
+            domainLocation = _campRepository.Delete<Domain.Entities.Location>(domainLocation);
 
             // Commit the operation
             this._campRepository.CommitChanges();
 
-            // Copy data from Domain DTo to App Model
-            Location = _mapper.Map<LocationModel>(location);
+            // Copy data from Domain Entity to App Model
+            // Note: Auto mapping does not include image filename and data
+            LocationModel = _mapper.Map<LocationModel>(domainLocation);
 
             // Send to the paget that will be redirected, a message through TempData
             // to inform the user about the operation that took place. 
-            TempData["ActionMessage"] = $"{Location.VenueName} deleted";
+            TempData["ActionMessage"] = $"{LocationModel.VenueName} deleted";
 
             // IMPORTANT: For ADD, EDIT, or DELETE operations allwyas redirect to a different page
             // Force re-direction to detail page, do not stay in curent page

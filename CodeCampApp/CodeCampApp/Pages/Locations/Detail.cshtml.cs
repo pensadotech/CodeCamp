@@ -21,8 +21,7 @@ namespace CodeCampApp.Pages.Locations
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties .....................................
-        public LocationModel Location { get; set; }
-
+        public LocationModel LocationModel { get; set; }
 
         // Constructors ................................
         public DetailModel(IConfiguration config, ILogger<ListModel> logger,
@@ -38,12 +37,27 @@ namespace CodeCampApp.Pages.Locations
         public IActionResult OnGet(int locationId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Location location = _campRepository.GetLocationById(locationId);
+            Domain.Entities.Location domainLocation = _campRepository.GetLocationById(locationId);
 
             // Copy data from Domain DTo to App Model
-            Location = _mapper.Map<LocationModel>(location);
+            // Note: Auto mapping does not include image filename and data
+            LocationModel = _mapper.Map<LocationModel>(domainLocation);
 
-            if (Location == null)
+            if (LocationModel != null)
+            {
+                string imageBase64Data = null;
+                string imageDataURL = "https://via.placeholder.com/200";
+
+                if (domainLocation.ProfileImageData != null)
+                {
+                    imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                }
+
+                LocationModel.ProfileImageFilename = imageDataURL;
+                LocationModel.ProfileImageFormFile = null;
+            }
+            else
             {
                 return RedirectToPage("./NotFound");
             }

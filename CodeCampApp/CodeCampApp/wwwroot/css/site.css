@@ -97,7 +97,7 @@ a:visited {
 }
 
 
-/* Card properties ....................*/
+/* Card on list */
 .cardloclist {
     min-width: 300px;
     min-height: 205px;
@@ -109,12 +109,18 @@ a:visited {
     margin: 5% 5% 0% 5%;
 }
 
+.cardloclistimgSml {
+    width: 55%;
+    padding: 1%;
+    margin: 1% 0% 2% 1%;
+}
+
 .cardloclistbody {
 
 }
 
 .cardloclistVenue {
-    color: darkblue;
+   
 }
 
 .cardloclistaddres, .cardloclistcitystate {
@@ -130,6 +136,24 @@ a:visited {
  margin-top: 2%;
 }
 
+/* Card detail and edit */
+.cardimgHdr {
+    margin: 2% 0% 5% 0%;
+    width: 280px;
+    height: 230px;
+}
+
+.cardLocTitleBlue {
+    color: darkblue;
+}
+
+.cardLocTitleHeaderLabel {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
 /* Tables properties ...................*/
 .table {
     background-color: #DBE9F4;
@@ -142,7 +166,6 @@ a:visited {
 }
 
 
-
 /* Test borders .......................*/
 .redborder {
     border: solid 1px red;
@@ -153,10 +176,8 @@ a:visited {
 }
 
 .greenborder {
-    border: solid 1px green;
+    border: solid 1px green; 
 }
-
-
 
 .alert {
     font-size: 10px;
@@ -176,6 +197,13 @@ a:visited {
     -webkit-box-shadow: 2px 7px 7px 2px #DBE9F4;
     -moz-box-shadow: 2px 7px 7px 2px #DBE9F4;
     box-shadow: 2px 7px 7px 2px #DBE9F4;
+}
+
+.imageShadowSml {
+    /* Add drop shadow */
+    -webkit-box-shadow: 2px 2px 2px 2px #DBE9F4;
+    -moz-box-shadow: 2px 2px 2px 2px #DBE9F4;
+    box-shadow: 2px 2px 2px 2px #DBE9F4;
 }
 
 /* Media queries .......................*/

@@ -51,8 +51,6 @@ namespace CodeCampApp
             services.AddSingleton(mapper);
 
 
-
-
             services.AddRazorPages();
         }
 

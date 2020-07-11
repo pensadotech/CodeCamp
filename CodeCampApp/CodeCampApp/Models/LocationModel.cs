@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,8 +30,13 @@ namespace CodeCampApp.Models
 
         public string Country { get; set; }
 
-        public string ProfileImage { get; set; }
-
         public string ContactPhone { get; set; }
+
+        public string ProfileImageFilename { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public IFormFile ProfileImageFormFile { get; set; }
+
+       
     }
 }

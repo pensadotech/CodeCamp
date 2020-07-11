@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using CodeCamp.Data.DummyData;
+using System.IO;
 
 namespace CodeCamp.Data.Repositories
 {
@@ -201,6 +202,9 @@ namespace CodeCamp.Data.Repositories
                     locToUpd.StateProvince = loc.StateProvince;
                     locToUpd.PostalCode = loc.PostalCode;
                     locToUpd.Country = loc.Country;
+                    // Image
+                    locToUpd.ProfileImageFilename = loc.ProfileImageFilename;
+                    locToUpd.ProfileImageData = loc.ProfileImageData;
                 }
             }
             else if (objType == typeof(Talk))
@@ -339,6 +343,10 @@ namespace CodeCamp.Data.Repositories
             return speaker;
         }
 
-       
+        public int GetCount()
+        {
+            return _speakers.Count;
+        }
+
     }
 }

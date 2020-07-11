@@ -10,18 +10,29 @@
 <h1>Location Delete</h1>
 
 <div class="alert alert-danger">
-    Are you sure you want to delete @Model.Location.VenueName?
+    Are you sure you want to delete @Model.LocationModel.VenueName?
 </div>
 
-<div calss="card">
-    <div class="card-body">
-        <h4 class="card-title">@Model.Location.VenueName</h4>
-        <h6 class="card-text">Address1: @Model.Location.Address1</h6>
-        <h6 class="card-text">Address2: @Model.Location.Address2</h6>
-        <h6 class="card-text">City-Town:  @Model.Location.CityTown</h6>
-        <h6 class="card-text">State-Province: @Model.Location.StateProvince</h6>
-        <h6 class="card-text">Postal Code: @Model.Location.PostalCode</h6>
-        <h6 class="card-text">Country: @Model.Location.Country</h6>
+<div class="card bg-info mb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="cardimg ">
+                    @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                    <img class="card-img-top imgRnd10 imageShadow cardimgHdr"
+                         src="@Model.LocationModel.ProfileImageFilename"
+                         alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card-body">
+                    <h3 class="card-title cardLocTitleBlue">@Model.LocationModel.VenueName</h3>
+                    <h5 class="card-text">Address: @Model.LocationModel.Address1,  @Model.LocationModel.Address2</h5>
+                    <h5 class="card-text"> @Model.LocationModel.CityTown, @Model.LocationModel.StateProvince  @Model.LocationModel.PostalCode</h5>
+                    <h5 class="card-text"> @Model.LocationModel.Country</h5>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

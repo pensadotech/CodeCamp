@@ -10,79 +10,168 @@
 
 <h1>Location Edit</h1>
 
-<form method="post">
+<div class="card card bg-info mb-2">
+    <form method="post" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="cardimg ">
+                        @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                        <img id="output"
+                             class="card-img-top imgRnd10 imageShadow cardimgHdr"
+                             src="@Model.LocationModel.ProfileImageFilename"
+                             alt="Card image cap">
+                    </div>
+                    @* Image *@
+                    <div class="form-group">
+                        <label asp-for="@Model.LocationModel.ProfileImageFormFile"></label>
+                        <input type="file"
+                               accept=".jpg, .jpeg, .png"
+                               id="file-selector"
+                               asp-for="@Model.LocationModel.ProfileImageFormFile"
+                               class="form-control" />
+                        <span class="text-danger" asp-validation-for="LocationModel.ProfileImageFormFile"></span>
+                        <p id="status"></p>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card-body">
+                        @* Summarize all errors in the page *@
+                        <div asp-validation-summary="All" class="text-danger"></div>
 
-    @* Summarize all errors in the page *@
-    <div asp-validation-summary="All" class="text-danger"></div>
+                        @* The id is added to the page to be passed during teh POST operation *@
+                        @* to indetify what entity is been modified.  This must be hidden. *@
+                        <input type="hidden" asp-for="@Model.LocationModel.Id" />
 
-    @* The id is added to the page to be passed during teh POST operation *@
-    @* to indetify what entity is been modified.  This must be hidden. *@
-    <input type="hidden" asp-for="@Model.Location.Id" />
+                        @* Location.VenueName *@
+                        <div class="form-group ">
+                            <label class="cardLocTitleBlue cardLocTitleHeaderLabel" asp-for="@Model.LocationModel.VenueName"></label>
+                            <input asp-for="@Model.LocationModel.VenueName" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.VenueName"></span>
+                        </div>
 
-    @* Location.VenueName *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.VenueName"></label>
-        <input asp-for="@Model.Location.VenueName" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.VenueName"></span>
-    </div>
+                        @* Location.Address1 *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.Address1"></label>
+                            <input asp-for="@Model.LocationModel.Address1" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.Address1"></span>
+                        </div>
 
-    @* Location.Address1 *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.Address1"></label>
-        <input asp-for="@Model.Location.Address1" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.Address1"></span>
-    </div>
+                        @* Location.Address2 *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.Address2"></label>
+                            <input asp-for="@Model.LocationModel.Address2" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.Address2"></span>
+                        </div>
 
-    @* Location.Address2 *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.Address2"></label>
-        <input asp-for="@Model.Location.Address2" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.Address2"></span>
-    </div>
+                        @* Location.CityTown *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.CityTown"></label>
+                            <input asp-for="@Model.LocationModel.CityTown" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.CityTown"></span>
+                        </div>
 
-    @* Location.CityTown *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.CityTown"></label>
-        <input asp-for="@Model.Location.CityTown" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.CityTown"></span>
-    </div>
+                        @* Location.StateProvince *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.StateProvince"></label>
+                            <input asp-for="@Model.LocationModel.StateProvince" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.StateProvince"></span>
+                        </div>
 
-    @* Location.StateProvince *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.StateProvince"></label>
-        <input asp-for="@Model.Location.StateProvince" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.StateProvince"></span>
-    </div>
+                        @* Location.PostalCode *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.PostalCode"></label>
+                            <input asp-for="@Model.LocationModel.PostalCode" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.PostalCode"></span>
+                        </div>
 
-    @* Location.PostalCode *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.PostalCode"></label>
-        <input asp-for="@Model.Location.PostalCode" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.PostalCode"></span>
-    </div>
+                        @* Location.Country *@
+                        <div class="form-group">
+                            <label asp-for="@Model.LocationModel.Country"></label>
+                            <input asp-for="@Model.LocationModel.Country" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="LocationModel.Country"></span>
+                        </div>
 
-    @* Location.Country *@
-    <div class="form-group">
-        <label asp-for="@Model.Location.Country"></label>
-        <input asp-for="@Model.Location.Country" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Location.Country"></span>
-    </div>
+                        @* buttons *@
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a asp-page="./List" class="btn btn-primary">Cancel</a>
 
 
-    @* buttons *@
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-page="./List" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
-</form>
+</div>
+
+
+
 
 @* VS provides this partial view to add realtime response for validaitons *@
 @section Scripts {
+
+    <script>
+        // This script helps collecting the file from the input tag
+
+        // Get pointer to elements in the DOM
+        // Status below input tag
+        const status = document.getElementById('status');
+        // Image inside the card
+        const output = document.getElementById('output');
+
+        if (window.FileList && window.File && window.FileReader) {
+            // Get the INPUT element named as "fileSelector" as teh INPUT tag changes
+            document.getElementById('file-selector').addEventListener('change', event => {
+
+                console.log("output:", output)
+
+                // Initialize output and status
+                output.src = '';
+                status.textContent = '';
+
+                // Get the local files structure
+                const file = event.target.files[0];
+
+                console.log("File:", file)
+
+                // If not a file type, raise error
+                if (!file.type) {
+                    status.textContent =
+                        'Error: The File.type property does not appear to be supported on this browser.';
+
+                    return;
+                }
+
+                // If teh file is not an image, raise error
+                if (!file.type.match('image.*')) {
+                    status.textContent = 'Error: The selected file does not appear to be an image.'
+                    return;
+                }
+
+                // Instantiate a file reader
+                const reader = new FileReader();
+
+                // upon load event, get the file name
+                reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                });
+
+                // Load file in memory
+                reader.readAsDataURL(file);
+
+            });
+        }
+
+    </script>
+
     <partial name="_ValidationScriptsPartial" />
+
 }
