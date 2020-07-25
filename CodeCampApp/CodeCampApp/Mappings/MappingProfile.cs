@@ -51,7 +51,9 @@ namespace CodeCampApp.Mappings
             // Mapp Domain.Speaker to App.SpeakerModel
             // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Speaker, SpeakerModel>()
-               .ReverseMap();
+               .ReverseMap()
+               .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
+               .ForMember(t => t.ProfileImageData, opt => opt.Ignore()); ;
 
 
             // < Create other mappinsg in here >

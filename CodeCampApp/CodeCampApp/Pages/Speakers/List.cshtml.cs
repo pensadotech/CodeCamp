@@ -21,7 +21,7 @@ namespace CodeCampApp.Pages.Speakers
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties ...............................
-        public IEnumerable<SpeakerModel> Speakers { get; set; }
+        public IEnumerable<SpeakerModel> SpeakerModels { get; set; }
 
         // To handle messages
         public string LocalMessage { get; set; }
@@ -57,11 +57,33 @@ namespace CodeCampApp.Pages.Speakers
 
             try
             {
-                // Retrive all camps from repository, using the SearchTerm coming from teh frontend
+                // Retrive all speakers from repository, using the SearchTerm coming from teh frontend
                 IEnumerable<Domain.Entities.Speaker> domainSpeakers = _campRepository.GetAllSpeakers(SearchTerm);
 
-                // Copy data from Domain DTo to App Model
-                Speakers = _mapper.Map<SpeakerModel[]>(domainSpeakers);
+                // Copy data from Domain Entity to App Model
+                // Note: Auto mapping does not include image filename and data
+                SpeakerModels = _mapper.Map<SpeakerModel[]>(domainSpeakers);
+
+                // Mapp manually the image filename and data
+                foreach (var dSpk in domainSpeakers)
+                {
+                    var mSpk = SpeakerModels.SingleOrDefault(l => l.Id == dSpk.Id);
+                    if (mSpk != null)
+                    {
+                        string imageBase64Data = null;
+                        //string imageDataURL = "https://via.placeholder.com/200";
+                        string imageDataURL = @"..\images\DummySpeakerIng.jpg";
+
+                        if (dSpk.ProfileImageData != null)
+                        {
+                            imageBase64Data = Convert.ToBase64String(dSpk.ProfileImageData);
+                            imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                        }
+
+                        mSpk.ProfileImageFilename = imageDataURL;
+                        mSpk.ProfileImageFormFile = null;
+                    }
+                }
             }
             catch
             {

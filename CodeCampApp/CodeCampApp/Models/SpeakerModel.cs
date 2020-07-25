@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace CodeCampApp.Models
 {
@@ -18,8 +19,16 @@ namespace CodeCampApp.Models
 
         public string MiddleName { get; set; }
 
+        [StringLength(200)]
+        public string Description { get; set; }
+
         [StringLength(100)]
         public string Topics { get; set; }
+        [Required, StringLength(150)]
+        public string CityTown { get; set; }
+
+        [Required, StringLength(50)]
+        public string StateProvince { get; set; }
 
         [StringLength(50)]
         public string Company { get; set; }
@@ -36,12 +45,11 @@ namespace CodeCampApp.Models
         [StringLength(100)]
         public string GitHub { get; set; }
 
-        [Required, StringLength(150)]
-        public string CityTown { get; set; }
+      
 
-        [Required, StringLength(50)]
-        public string StateProvince { get; set; }
+        public string ProfileImageFilename { get; set; }
 
-        public string ProfileImage { get; set; }
+        [Display(Name = "Profile Picture")]
+        public IFormFile ProfileImageFormFile { get; set; }
     }
 }

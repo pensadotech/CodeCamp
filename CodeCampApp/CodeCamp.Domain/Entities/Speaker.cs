@@ -19,8 +19,13 @@ namespace CodeCamp.Domain.Entities
         
         public string MiddleName { get; set; }
 
+        public string Description { get; set; }
+
         public string Topics { get; set; }
-        
+        public string CityTown { get; set; }
+
+        public string StateProvince { get; set; }
+
         public string Company { get; set; }
 
         public string CompanyUrl { get; set; }
@@ -31,11 +36,8 @@ namespace CodeCamp.Domain.Entities
         
         public string GitHub { get; set; }
 
-        public string CityTown { get; set; }
-
-        public string StateProvince { get; set; }
-
-        public string ProfileImage { get; set; }
+        public string ProfileImageFilename { get; set; }
+        public byte[] ProfileImageData { get; set; }
 
         // Parent releationship
         // Camp is the parent class,however aslo add the ID to make 
