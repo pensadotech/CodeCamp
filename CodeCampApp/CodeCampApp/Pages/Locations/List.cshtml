@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row imgRnd5">
 
         <!-- Dynamic elements goes here -->
         @foreach (var loc in Model.LocationModels)
@@ -54,7 +54,7 @@
             <div class="col-sm-6">
 
                 @* Card *@
-                <div class="card text-white mb-2 container bg-info cardloclist">
+                <div class="card text-white mb-2 container bg-info cardloclist imgRnd10">
 
                     @* Card-row *@
                     <div class="row">
@@ -65,7 +65,7 @@
                                 <a class="btn-lg" data-toggle="tooltip" title="Detail"
                                    asp-page="./Detail"
                                    asp-route-locationId="@loc.Id">
-                                    <img class="card-img-top imgRnd10 imageShadow cardloclistimg"
+                                    <img class="card-img-top imgRnd40 imageShadow cardloclistimg"
                                          src="@loc.ProfileImageFilename" alt="Card image cap">
                                 </a>
                             </div>

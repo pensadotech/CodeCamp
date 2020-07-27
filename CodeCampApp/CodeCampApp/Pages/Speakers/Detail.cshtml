@@ -9,25 +9,75 @@
 
 <h1>Speaker Detail</h1>
 
-<div calss="card">
-    <div class="card-body">
-        <h4 class="card-title">@Model.Speaker.FirstName @Model.Speaker.MiddleName @Model.Speaker.LastName</h4>
-        <h6 class="card-text">Name: @Model.Speaker.FirstName</h6>
-        <h6 class="card-text">MiddleName: @Model.Speaker.MiddleName</h6>
-        <h6 class="card-text">LastName: @Model.Speaker.LastName</h6>
-        <h6 class="card-text">Topics:  @Model.Speaker.Topics</h6>
-        <h6 class="card-text">Company: @Model.Speaker.Company</h6>
-        <h6 class="card-text">CompanyUrl: @Model.Speaker.CompanyUrl</h6>
-        <h6 class="card-text">BlogUrl: @Model.Speaker.BlogUrl</h6>
-        <h6 class="card-text">Twitter: @Model.Speaker.Twitter</h6>
-        <h6 class="card-text">GitHub: @Model.Speaker.GitHub</h6>
-        <h6 class="card-text">CityTown: @Model.Speaker.CityTown</h6>
-        <h6 class="card-text">StateProvince: @Model.Speaker.StateProvince</h6>
+<div class="card bg-info mb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="cardimg p-3">
+                    @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                    <img class="card-img-top imgRnd40 imageShadow cardImgHdr"
+                         src="@Model.SpeakerModel.ProfileImageFilename"
+                         alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    <h4 class="card-title cardTitleBlue">@Model.SpeakerModel.FirstName @Model.SpeakerModel.MiddleName @Model.SpeakerModel.LastName</h4>
+                    
+                    <h6>About the speaker:</h6>
+                    <h5> <span class="spkerDescription">@Model.SpeakerModel.Description</span></h5>
+
+                    <h6 class="card-text"><i>Location:</i><span class="badge badge-primary">@Model.SpeakerModel.CityTown @Model.SpeakerModel.StateProvince</span></h6>
+                    <h6 class="card-text"><i>Topics: </i> <span class="badge badge-primary">@Model.SpeakerModel.Topics</span> </h6>
+
+                    <h6 class="card-text"><i>Company:</i> <span class="badge badge-success">@Model.SpeakerModel.Company</span></h6>
+                    
+                    <h6>
+                        <a href=" @Model.SpeakerModel.CompanyUrl" target="_blank">
+                            <img class="spkerLink imgRnd10 imageShadow"
+                                 src="~/images/company.png" alt="Company">
+                            @Model.SpeakerModel.CompanyUrl
+                        </a>
+                    </h6>
+
+                    <h6>
+                        <div class="spkerLinkImgHolder">
+                            <a href="@Model.SpeakerModel.BlogUrl" target="_blank" class="card-link">
+                                <img class="spkerLink imgRnd10 imageShadow"
+                                     src="~/images/blog.png" alt="blogg">
+                                @Model.SpeakerModel.BlogUrl
+                            </a>
+                        </div>
+                    </h6>
+
+                    <h6>
+                        <div class="spkerLinkImgHolder">
+                            <a href="@Model.SpeakerModel.Twitter" target="_blank" class="card-link">
+                                <img class="spkerLink imgRnd10 imageShadow"
+                                     src="~/images/Twitter.png" alt="Twitter">
+                                @Model.SpeakerModel.Twitter
+                            </a>
+                        </div>
+                    </h6>
+
+                    <h6 >
+                        <div class="spkerLinkImgHolder">
+                            <a href="@Model.SpeakerModel.GitHub" target="_blank" class="card-link">
+                                <img class="spkerLink imgRnd10 imageShadow"
+                                     src="~/images/githubPage.jpg" alt="GitHub">
+                                @Model.SpeakerModel.GitHub
+                            </a>
+                        </div>                       
+                    </h6>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <a class="btn btn-primary" asp-page="./List"> Return to Speaker list </a>
 
-<a class="btn btn-primary" asp-page="./Edit" asp-route-speakerId="@Model.Speaker.Id">
+<a class="btn btn-primary" asp-page="./Edit" asp-route-speakerId="@Model.SpeakerModel.Id">
     <i class="fa fa-edit"></i> Edit
 </a>

@@ -53,7 +53,7 @@
         @foreach (var spk in Model.SpeakerModels)
         {
             <div class="col-12">
-                <div class="row mt-2 p-2 text-white bg-info">
+                <div class="row mt-2 p-2 container text-white bg-info imgRnd10">
 
                     @* Col #1 *@
                     <div col="col-2">
@@ -62,24 +62,24 @@
                             @* Car top *@
                             <a class="btn-lg" data-toggle="tooltip" title="Detail"
                                asp-page="./Detail"
-                               asp-route-locationId="@spk.Id">
+                               asp-route-speakerId="@spk.Id">
                                 <img class="card-img-top imgRnd40 imageShadow cardspkerlistimg"
                                      src="@spk.ProfileImageFilename" alt="Image speaker">
                             </a>
                             <div class="">
                                 <a class="btn-lg " data-toggle="tooltip" title="Detail"
                                    asp-page="./Detail"
-                                   asp-route-locationId="@spk.Id">
+                                   asp-route-speakerId="@spk.Id">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
                                 <a class="btn-lg " data-toggle="tooltip" title="Edit"
                                    asp-page="./Edit"
-                                   asp-route-locationId="@spk.Id">
+                                   asp-route-speakerId="@spk.Id">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a class="btn-lg "
                                    asp-page="./Delete" data-toggle="tooltip" title="Delete"
-                                   asp-route-locationId="@spk.Id">
+                                   asp-route-speakerId="@spk.Id">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -95,19 +95,19 @@
                             <div class="spkearLinkGrp">
                                 <div class="d-flex flex-nowrap">
                                     <div class="spkerLinkImgHolder">
-                                        <a href="@spk.BlogUrl" class="card-link">
+                                        <a href="@spk.BlogUrl" target="_blank" class="card-link">
                                             <img class="spkerLink imgRnd10 imageShadow"
                                                  src="~/images/blog.png" alt="blogg">
                                         </a>
                                     </div>
                                     <div class="spkerLinkImgHolder">
-                                        <a href="@spk.Twitter" class="card-link">
+                                        <a href="@spk.Twitter" target="_blank" class="card-link">
                                             <img class="spkerLink imgRnd10 imageShadow"
                                                  src="~/images/Twitter.png" alt="Twitter">
                                         </a>
                                     </div>
                                     <div class="spkerLinkImgHolder">
-                                        <a href="@spk.GitHub" class="card-link">
+                                        <a href="@spk.GitHub" target="_blank" class="card-link">
                                             <img class="spkerLink imgRnd10 imageShadow"
                                                  src="~/images/githubPage.jpg" alt="GitHub">
                                         </a>
@@ -132,11 +132,18 @@
                                 <div class="col-12">
                                     <h6><i>Location:</i> <span class="badge badge-primary">@spk.CityTown @spk.StateProvince</span></h6>
                                     <h6><i>Topics: </i><span class="badge badge-primary">@spk.Topics</span></h6>
-                                    <h5><i>Company: </i>
-                                        <span class="badge badge-success">
-                                          <a href=" @spk.CompanyUrl">  @spk.Company</a>
-                                         </span>
+                                    <h5>
+                                        <div class="spkerLinkImgHolder">
+                                            <a href="@spk.CompanyUrl" target="_blank" class="card-link">
+                                                <img class="spkerLink imgRnd10 imageShadow"
+                                                     src="~/images/company.png" alt="Company">
+                                            </a>
+                                            <span class="badge badge-success">
+                                               @spk.Company
+                                            </span>
+                                        </div>
                                     </h5>
+                                    
                                 </div>
                             </div>
                         </div>

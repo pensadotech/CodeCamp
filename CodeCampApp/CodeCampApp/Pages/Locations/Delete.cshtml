@@ -10,24 +10,27 @@
 <h1>Location Delete</h1>
 
 <div class="alert alert-danger">
-    Are you sure you want to delete @Model.LocationModel.VenueName?
+    <h5>Are you sure you want to delete Location: 
+      @Model.LocationModel.VenueName?
+    </h5> 
 </div>
 
 <div class="card bg-info mb-2">
     <div class="container">
         <div class="row">
-            <div class="col-sm">
-                <div class="cardimg ">
+            <div class="col-sm-4">
+                <div class="cardimg p-2">
                     @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
-                    <img class="card-img-top imgRnd10 imageShadow cardLocimgHdr"
+                    <img class="card-img-top imgRnd40 imageShadow cardimgHdr"
                          src="@Model.LocationModel.ProfileImageFilename"
                          alt="Card image cap">
                 </div>
             </div>
             <div class="col-sm">
                 <div class="card-body">
-                    <h3 class="card-title cardLocTitleBlue">@Model.LocationModel.VenueName</h3>
-                    <h5 class="card-text">Address: @Model.LocationModel.Address1,  @Model.LocationModel.Address2</h5>
+                    <h3 class="card-title cardTitleBlue">@Model.LocationModel.VenueName</h3>
+                    <p><i>Address:</i></p>
+                    <h5 class="card-text"> @Model.LocationModel.Address1,  @Model.LocationModel.Address2</h5>
                     <h5 class="card-text"> @Model.LocationModel.CityTown, @Model.LocationModel.StateProvince  @Model.LocationModel.PostalCode</h5>
                     <h5 class="card-text"> @Model.LocationModel.Country</h5>
                 </div>
@@ -40,5 +43,5 @@
 @* The POTS operation will be used to take a delete action *@
 <form method="post">
     <button type="submit" class="btn btn-danger">Delete!</button>
-    <a asp-page="./List" class="btn btn-default">Cancel</a>
+    <a asp-page="./List" class="btn btn-secondary">Cancel</a>
 </form>

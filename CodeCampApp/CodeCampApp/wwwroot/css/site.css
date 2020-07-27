@@ -136,19 +136,20 @@ a:visited {
 }
 
 /* Card detail and edit ..............................*/
-.cardLocimgHdr {
+.cardImgHdr {
     margin: 2% 0% 5% 0%;
     width: 280px;
     height: 230px;
 }
 
-.cardLocTitleBlue {
+.cardTitleBlue {
     color: darkblue;
 }
 
-.cardLocTitleHeaderLabel {
+.cardTitleHeaderLabel {
     font-weight: bold;
     font-size: 20px;
+    color: darkblue;
 }
 
 .controlLink {
@@ -161,7 +162,6 @@ a:visited {
 
 
 /* speakers .................................... */
-
 .spkerdatagrp1{
     margin: 5px 7px 0px 0px;
 }
@@ -192,6 +192,10 @@ a:visited {
 
 .spkerLink:hover {
     width: 38px;
+}
+
+.spkerLinkStatic {
+    width: 35px;
 }
 
 .spkerDescription {
@@ -243,6 +247,13 @@ a:visited {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+.imgRnd5 {
+    /* Rounded image corners */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .imageShadow {

@@ -21,9 +21,7 @@ namespace CodeCampApp.Pages.Speakers
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties .....................................
-        public SpeakerModel Speaker { get; set; }
-
-
+        public SpeakerModel SpeakerModel { get; set; }
 
         // Constructors .........................
         public DetailModel(IConfiguration config, ILogger<ListModel> logger,
@@ -39,12 +37,27 @@ namespace CodeCampApp.Pages.Speakers
         public IActionResult OnGet(int speakerId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Speaker spkr = _campRepository.GetSpeakerById(speakerId);
+            Domain.Entities.Speaker domainSpkr = _campRepository.GetSpeakerById(speakerId);
 
             // Copy data from Domain DTo to App Model
-            Speaker = _mapper.Map<SpeakerModel>(spkr);
+            SpeakerModel = _mapper.Map<SpeakerModel>(domainSpkr);
 
-            if (Speaker == null)
+            if (SpeakerModel != null)
+            {
+                //string imageDataURL = "https://via.placeholder.com/200";
+                string imageDataURL = @"..\..\images\dummySpeakerImg.jpg";
+
+                if (domainSpkr.ProfileImageData != null)
+                {
+                    string imageBase64Data = Convert.ToBase64String(domainSpkr.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                }
+
+                SpeakerModel.ProfileImageFilename = imageDataURL;
+                SpeakerModel.ProfileImageFormFile = null;
+
+            }
+            else
             {
                 return RedirectToPage("./NotFound");
             }

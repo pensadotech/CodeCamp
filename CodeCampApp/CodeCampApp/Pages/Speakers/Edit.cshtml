@@ -10,110 +10,297 @@
 
 <h1>Speaker Edit</h1>
 
-<form method="post">
+<div class="card bg-info mb-2">
+    <form method="post" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row">
 
-    @* Summarize all errors in the page *@
-    <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="col-sm-5">
+                    <div class="cardimg p-3">
+                        @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                        <img id="output"
+                             class="card-img-top imgRnd40 imageShadow cardImgHdr"
+                             src="@Model.SpeakerModel.ProfileImageFilename"
+                             alt="Speaker image">
+                    </div>
+                    @* Image *@
+                    <div class="form-group">
+                        <label asp-for="@Model.SpeakerModel.ProfileImageFormFile"></label>
+                        <input type="file"
+                               accept=".jpg, .jpeg, .png"
+                               id="file-selector"
+                               asp-for="@Model.SpeakerModel.ProfileImageFormFile"
+                               class="form-control btn-outline-dark" 
+                                placeholder="Add Profile picture" />
+                        <span class="text-danger" asp-validation-for="SpeakerModel.ProfileImageFormFile"></span>
+                        <p id="status"></p>
+                    </div>
+                </div>
 
-    @* The id is added to the page to be passed during teh POST operation *@
-    @* to indetify what entity is been modified.  This must be hidden. *@
-    <input type="hidden" asp-for="@Model.Speaker.Id" />
+                <div class="col-sm">
+                    <div class="card-body">
 
-    @* Speaker.FirstName *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.FirstName"></label>
-        <input asp-for="@Model.Speaker.FirstName" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.FirstName"></span>
-    </div>
+                        @* Summarize all errors in the page *@
+                        <div asp-validation-summary="All" class="text-danger"></div>
 
-    @* Speaker.LastName *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.LastName"></label>
-        <input asp-for="@Model.Speaker.LastName" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.LastName"></span>
-    </div>
+                        @* The id is added to the page to be passed during teh POST operation *@
+                        @* to indetify what entity is been modified.  This must be hidden. *@
+                        <input type="hidden" asp-for="@Model.SpeakerModel.Id" />
 
-    @* Speaker.MiddleName *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.MiddleName"></label>
-        <input asp-for="@Model.Speaker.MiddleName" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.MiddleName"></span>
-    </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                @* Speaker.FirstName *@
+                                <div class="form-group">
+                                    <label class="cardTitleHeaderLabel"
+                                           asp-for="@Model.SpeakerModel.FirstName">
+                                        Name
+                                    </label>
+                                    <input asp-for="@Model.SpeakerModel.FirstName" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="SpeakerModel.FirstName"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                @* Speaker.MiddleName *@
+                                <div class="form-group">
+                                    <label class="cardTitleHeaderLabel"
+                                           asp-for="@Model.SpeakerModel.MiddleName">
+                                        M.Initial
+                                    </label>
+                                    <input asp-for="@Model.SpeakerModel.MiddleName" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="SpeakerModel.MiddleName"></span>
+                                </div>
+                            </div>
 
-    @* Speaker.Topics *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.Topics"></label>
-        <input asp-for="@Model.Speaker.Topics" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.Topics"></span>
-    </div>
+                        </div>
 
-    @* Speaker.Company *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.Company"></label>
-        <input asp-for="@Model.Speaker.Company" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.Company"></span>
-    </div>
+                        @* Speaker.LastName *@
+                        <div class="form-group">
+                            <label class="cardTitleHeaderLabel"
+                                   asp-for="@Model.SpeakerModel.LastName">
+                                Family Name
+                            </label>
+                            <input asp-for="@Model.SpeakerModel.LastName" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.LastName"></span>
+                        </div>
 
-    @* Speaker.CompanyUrl *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.CompanyUrl"></label>
-        <input asp-for="@Model.Speaker.CompanyUrl" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.CompanyUrl"></span>
-    </div>
+                        @* Speaker.Description *@
+                        <div class="form-group">
+                            <label class=""
+                                   asp-for="@Model.SpeakerModel.Description">
+                                About the speaker
+                            </label>
+                            <textarea asp-for="@Model.SpeakerModel.Description"
+                                      class="form-control" type="text" rows="3"
+                                      placeholder="Please add brief description">
+                            </textarea>
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.LastName"></span>
+                        </div>
 
-    @* Speaker.BlogUrl *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.BlogUrl"></label>
-        <input asp-for="@Model.Speaker.BlogUrl" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.BlogUrl"></span>
-    </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                @* Speaker.CityTown *@
+                                <div class="form-group">
+                                    <label asp-for="@Model.SpeakerModel.CityTown"></label>
+                                    <input asp-for="@Model.SpeakerModel.CityTown" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="SpeakerModel.CityTown"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                @* Speaker.StateProvince *@
+                                <div class="form-group">
+                                    <label asp-for="@Model.SpeakerModel.StateProvince"></label>
+                                    <input asp-for="@Model.SpeakerModel.StateProvince" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="SpeakerModel.StateProvince"></span>
+                                </div>
+                            </div>
+                        </div>
 
-    @* Speaker.Twitter *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.Twitter"></label>
-        <input asp-for="@Model.Speaker.Twitter" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.Twitter"></span>
-    </div>
+                        @* Speaker.Topics *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.Topics"></label>
+                            <input asp-for="@Model.SpeakerModel.Topics" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.Topics"></span>
+                        </div>
 
-    @* Speaker.GitHub *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.GitHub"></label>
-        <input asp-for="@Model.Speaker.GitHub" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.GitHub"></span>
-    </div>
+                        @* Speaker.Company *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.Company">
+                                Company Name:
+                            </label>
 
-    @* Speaker.CityTown *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.CityTown"></label>
-        <input asp-for="@Model.Speaker.CityTown" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.CityTown"></span>
-    </div>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img class="spkerLinkStatic imgRnd10 imageShadow"
+                                         src="~/images/company.png" alt="Company">
+                                </div>
+                                <div class="col-sm">
+                                    <input asp-for="@Model.SpeakerModel.Company" class="form-control" />
+                                </div>
+                            </div>
 
-    @* Speaker.StateProvince *@
-    <div class="form-group">
-        <label asp-for="@Model.Speaker.StateProvince"></label>
-        <input asp-for="@Model.Speaker.StateProvince" class="form-control" />
-        @* This line is to provide validation to this field *@
-        <span class="text-danger" asp-validation-for="Speaker.StateProvince"></span>
-    </div>
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.Company"></span>
+                        </div>
 
-    @* buttons *@
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-page="./List" class="btn btn-primary">Cancel</a>
+                        @* Speaker.CompanyUrl *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.CompanyUrl">
+                                Company URL:
+                            </label>
 
-</form>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img class="spkerLinkStatic imgRnd10 imageShadow"
+                                         src="~/images/company.png" alt="Company">
+                                </div>
+                                <div class="col-sm">
+                                    <input asp-for="@Model.SpeakerModel.CompanyUrl" class="form-control" />
+                                </div>
+                            </div>
+
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.CompanyUrl"></span>
+                        </div>
+
+                        @* Speaker.BlogUrl *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.BlogUrl">
+                                Blog:
+                            </label>
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img class="spkerLinkStatic imgRnd10 imageShadow"
+                                         src="~/images/blog.png" alt="blogg">
+                                </div>
+                                <div class="col-sm">
+                                    <input asp-for="@Model.SpeakerModel.BlogUrl" class="form-control" />
+                                </div>
+                            </div>
+
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.BlogUrl"></span>
+                        </div>
+
+                        @* Speaker.Twitter *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.Twitter">
+
+                                Twiter:
+                            </label>
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img class="spkerLinkStatic imgRnd10 imageShadow"
+                                         src="~/images/Twitter.png" alt="Twitter">
+                                </div>
+                                <div class="col-sm">
+                                    <input asp-for="@Model.SpeakerModel.Twitter" class="form-control" />
+                                </div>
+                            </div>
+
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.Twitter"></span>
+                        </div>
+
+                        @* Speaker.GitHub *@
+                        <div class="form-group">
+                            <label asp-for="@Model.SpeakerModel.GitHub">
+
+                                GitHub
+                            </label>
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img class="spkerLinkStatic imgRnd10 imageShadow"
+                                         src="~/images/githubPage.jpg" alt="GitHub">
+                                </div>
+                                <div class="col-sm">
+                                    <input asp-for="@Model.SpeakerModel.GitHub" class="form-control" />
+                                </div>
+                            </div>
+
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="SpeakerModel.GitHub"></span>
+                        </div>
+
+                        @* buttons *@
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a asp-page="./List" class="btn btn-secondary">Cancel</a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
 
 @* VS provides this partial view to add realtime response for validaitons *@
 @section Scripts {
+
+    <script>
+              
+        // This script helps collecting the file from the input tag
+
+        // Get pointer to elements in the DOM
+        // Status below input tag
+        const status = document.getElementById('status');
+        // Image inside the card
+        const output = document.getElementById('output');
+
+        if (window.FileList && window.File && window.FileReader) {
+
+            // Get the INPUT element named as "fileSelector" as the INPUT tag changes
+            document.getElementById('file-selector').addEventListener('change', event => {
+
+                console.log("output:", output)
+
+                // Initialize output and status
+                output.src = '';
+                status.textContent = '';
+
+                // Get the local files structure
+                const file = event.target.files[0];
+
+                console.log("File:", file)
+
+                // If not a file type, raise error
+                if (!file.type) {
+                    status.textContent =
+                        'Error: The File.type property does not appear to be supported on this browser.';
+                    return;
+                }
+
+                // If teh file is not an image, raise error
+                if (!file.type.match('image.*')) {
+                    status.textContent = 'Error: The selected file does not appear to be an image.'
+                    return;
+                }
+
+                // Instantiate a file reader
+                const reader = new FileReader();
+
+                // upon load event, get the file name
+                reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                });
+
+                // Load file in memory
+                reader.readAsDataURL(file);
+
+            });
+        }
+
+    </script>
+
     <partial name="_ValidationScriptsPartial" />
 }

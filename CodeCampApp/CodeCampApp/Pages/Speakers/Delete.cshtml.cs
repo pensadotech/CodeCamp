@@ -21,7 +21,7 @@ namespace CodeCampApp.Pages.Speakers
         private readonly Domain.Repositories.ICampRepository _campRepository;
 
         // Properties .....................................
-        public SpeakerModel Speaker { get; set; }
+        public SpeakerModel SpeakerModel { get; set; }
 
         // Constructors ....................................
         public DeleteModel(IConfiguration config, ILogger<ListModel> logger,
@@ -37,16 +37,30 @@ namespace CodeCampApp.Pages.Speakers
         public IActionResult OnGet(int speakerId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Speaker spker = _campRepository.GetSpeakerById(speakerId);
+            Domain.Entities.Speaker domainSpker = _campRepository.GetSpeakerById(speakerId);
 
-            // Copy data from Domain DTO to App Model
-            Speaker = _mapper.Map<SpeakerModel>(spker);
+            // Copy data from Domain DTo to App Model
+            // Note: Auto mapping does not include image filename and data
+            SpeakerModel = _mapper.Map<SpeakerModel>(domainSpker);
 
-            if (Speaker == null)
+            if (SpeakerModel != null)
+            {
+                //string imageDataURL = "https://via.placeholder.com/200";
+                string imageDataURL = @"..\..\images\dummySpeakerImg.jpg";
+
+                if (domainSpker.ProfileImageData != null)
+                {
+                    string imageBase64Data = Convert.ToBase64String(domainSpker.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                }
+
+                SpeakerModel.ProfileImageFilename = imageDataURL;
+                SpeakerModel.ProfileImageFormFile = null;
+            }
+            else
             {
                 return RedirectToPage("./NotFound");
             }
-
             return Page();
         }
 
@@ -55,20 +69,20 @@ namespace CodeCampApp.Pages.Speakers
         public IActionResult OnPost(int speakerId)
         {
             // Retreive the deail for the selected model 
-            Domain.Entities.Speaker spker = _campRepository.GetSpeakerById(speakerId);
+            Domain.Entities.Speaker domainSpker = _campRepository.GetSpeakerById(speakerId);
 
             // Retreive the deail for the selected model 
-            spker = _campRepository.Delete<Domain.Entities.Speaker>(spker);
+            domainSpker = _campRepository.Delete<Domain.Entities.Speaker>(domainSpker);
 
             // Commit the operation
             this._campRepository.CommitChanges();
-            
+
             // Copy data from Domain DTo to App Model
-            Speaker = _mapper.Map<SpeakerModel>(spker);
+            SpeakerModel = _mapper.Map<SpeakerModel>(domainSpker);
 
             // Send to the paget that will be redirected, a message through TempData
             // to inform the user about the operation that took place. 
-            TempData["ActionMessage"] = $"{Speaker.LastName} deleted";
+            TempData["ActionMessage"] = $"{SpeakerModel.LastName} deleted";
 
             // IMPORTANT: For ADD, EDIT, or DELETE operations allwyas redirect to a different page
             // Force re-direction to detail page, do not stay in curent page

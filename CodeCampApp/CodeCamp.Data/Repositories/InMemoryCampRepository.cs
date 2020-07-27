@@ -228,14 +228,18 @@ namespace CodeCamp.Data.Repositories
                     spkerToUpd.FirstName = spker.FirstName;
                     spkerToUpd.LastName = spker.LastName;
                     spkerToUpd.MiddleName = spker.MiddleName;
+                    spkerToUpd.Description = spker.Description;
                     spkerToUpd.Topics = spker.Topics;
+                    spkerToUpd.CityTown = spker.CityTown;
+                    spkerToUpd.StateProvince = spker.StateProvince;
                     spkerToUpd.Company = spker.Company;
                     spkerToUpd.CompanyUrl = spker.CompanyUrl;
                     spkerToUpd.BlogUrl = spker.BlogUrl;
                     spkerToUpd.Twitter = spker.Twitter;
                     spkerToUpd.GitHub = spker.GitHub;
-                    spkerToUpd.CityTown = spker.CityTown;
-                    spkerToUpd.StateProvince = spker.StateProvince;
+                    // Image
+                    spkerToUpd.ProfileImageFilename = spker.ProfileImageFilename;
+                    spkerToUpd.ProfileImageData = spker.ProfileImageData;
                 }
 
             }

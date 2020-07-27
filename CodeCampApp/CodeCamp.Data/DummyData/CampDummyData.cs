@@ -304,13 +304,13 @@ namespace CodeCamp.Data.DummyData
                 MiddleName = "R",
                 Description = "Great professional with love for teaching and hiking.",
                 Topics = ".NET Core, Java Script",
-                BlogUrl = "http://JohnDoeBlog.com",
-                Company = "Wilder Minds LLC",
-                CompanyUrl = "http://JohnDoe.com",
-                GitHub = "http://JohnDoe.github.io",
-                Twitter = "@johnDoe",
                 CityTown = "Irvine",
-                StateProvince= "CA"
+                StateProvince = "CA",
+                Company = "Wilder Minds LLC",
+                CompanyUrl = "http://www.pensadotech.com/",
+                BlogUrl = "http://pensadotech.blogspot.com/",
+                GitHub = "https://pensadotech.github.io/",
+                Twitter = "https://twitter.com/pensadotech"                
             };
 
             // Sepeaker #2
@@ -322,13 +322,13 @@ namespace CodeCamp.Data.DummyData
                 MiddleName = "V",
                 Description = "Great professional with love for teaching and hiking.",
                 Topics = "Java Script, Java",
-                BlogUrl = "http://SusanFlowersBlog.com",
-                Company = "Susan LLC",
-                CompanyUrl = "http://SusanFlowers.com",
-                GitHub = "http://susan.github.io",
-                Twitter = "@SusanFlowers",
                 CityTown = "Tustin",
-                StateProvince = "CA"
+                StateProvince = "CA",
+                Company = "Susan LLC",
+                CompanyUrl = "http://www.pensadotech.com/",
+                BlogUrl = "http://pensadotech.blogspot.com/",
+                GitHub = "https://pensadotech.github.io/",
+                Twitter = "https://twitter.com/pensadotech"
             };
 
             // Sepeaker #3
@@ -340,13 +340,13 @@ namespace CodeCamp.Data.DummyData
                 MiddleName = "S",
                 Description = "Great professional with love for teaching and hiking.",
                 Topics = "OpenEdge,C#",
-                BlogUrl = "http://JohnFreakBlog.com",
-                Company = "Wilder Minds LLC",
-                CompanyUrl = "http://JohFreak.com",
-                GitHub = "http://JohnFreak.github.io",
-                Twitter = "@JohnFreak",
                 CityTown = "Irvine",
-                StateProvince = "CA"
+                StateProvince = "CA",
+                Company = "Wilder Minds LLC",
+                CompanyUrl = "http://www.pensadotech.com/",
+                BlogUrl = "http://pensadotech.blogspot.com/",
+                GitHub = "https://pensadotech.github.io/",
+                Twitter = "https://twitter.com/pensadotech"
             };
 
             // Sepeaker #4
@@ -358,13 +358,13 @@ namespace CodeCamp.Data.DummyData
                 MiddleName = "",
                 Description = "Great professional with love for teaching adn hiking.",
                 Topics = "Java Script, Java",
-                BlogUrl = "http://RosieLavanderBlog.com",
-                Company = "Susan LLC",
-                CompanyUrl = "http://RosieLavander.com",
-                GitHub = "http://RosieLavander.github.io",
-                Twitter = "@RosieLavander",
                 CityTown = "Tustin",
-                StateProvince = "CA"
+                StateProvince = "CA",
+                Company = "Susan LLC",
+                CompanyUrl = "http://www.pensadotech.com/",
+                BlogUrl = "http://pensadotech.blogspot.com/",
+                GitHub = "https://pensadotech.github.io/",
+                Twitter = "https://twitter.com/pensadotech"
             };
 
 

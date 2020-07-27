@@ -21,7 +21,6 @@ namespace CodeCampApp.Pages.Locations
         private readonly IMapper _mapper;
         private readonly ILogger<ListModel> _logger;
         private readonly Domain.Repositories.ICampRepository _campRepository;
-        private IWebHostEnvironment _environment;
 
         // Properties .....................................
         // Bind property will help populate the Location property upon a POST operation
@@ -29,7 +28,7 @@ namespace CodeCampApp.Pages.Locations
         [BindProperty]
         public LocationModel LocationModel { get; set; }
 
-        // Construrctors ........................
+        // Constructors ........................
         public EditModel(IConfiguration config, ILogger<ListModel> logger,
             IMapper mapper, Domain.Repositories.ICampRepository campRepository, IWebHostEnvironment environment)
         {
@@ -37,7 +36,6 @@ namespace CodeCampApp.Pages.Locations
             _logger = logger;
             _mapper = mapper;
             _campRepository = campRepository;
-            _environment = environment;
         }
 
         // Methods ..............................
@@ -62,11 +60,8 @@ namespace CodeCampApp.Pages.Locations
 
                 if (domainLocation.ProfileImageData != null)
                 {
-                    if (domainLocation.ProfileImageData != null)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
-                        imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-                    }
+                    string imageBase64Data = Convert.ToBase64String(domainLocation.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
                 }
             }
             else
@@ -91,7 +86,7 @@ namespace CodeCampApp.Pages.Locations
             // ModelState can help visualize a particular field from the POST operation
             // for example Model["Location"]. However, it also helps to validate 
             // if in general the input fields are valid
-            // Validation enforces Model attributes indicated restrictions
+            // NOTE: Validation enforces restrictions based on Model attributes 
             if (!ModelState.IsValid)
             {
                 // If input is not valid, render again and return
@@ -110,7 +105,7 @@ namespace CodeCampApp.Pages.Locations
                 // Note: Auto mapping does not include image filename and data
                 domainLocationToAddOrUpd = _mapper.Map<Domain.Entities.Location>(LocationModel);
 
-                // If not image was selected. restor the current on file
+                // If not image was selected. restore the current on file
                 if (LocationModel.ProfileImageFormFile == null)
                 {
                     var domainLocOld = _campRepository.GetLocationById(LocationModel.Id);
@@ -126,7 +121,7 @@ namespace CodeCampApp.Pages.Locations
                 domainLocationToAddOrUpd = _mapper.Map<Domain.Entities.Location>(LocationModel);
             }
 
-            // Map manually the image filename and data to teh new or updated record
+            // IMAGE: Map manually the image filename and data to the new or updated record
             if (LocationModel.ProfileImageFormFile != null)
             {
                 // sync new filenane selected to the string representation in the model
@@ -150,7 +145,7 @@ namespace CodeCampApp.Pages.Locations
             }
             else
             {
-                // Add the location to teh list
+                // Add the location to the list
                 // Note: Auto mapping does not include image filename and data
                 _campRepository.Add<Domain.Entities.Location>(domainLocationToAddOrUpd);
 
@@ -162,7 +157,7 @@ namespace CodeCampApp.Pages.Locations
             // Commit changes in repository
             _campRepository.CommitChanges();
 
-            // Send to the paget that will be redirected, a message through TempData
+            // Send to the page that will be redirected, a message through TempData
             // to inform the user about the operation that took place. 
             TempData["ActionMessage"] = "Location saved!";
 

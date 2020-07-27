@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace CodeCampApp.Pages.Speakers
 {
@@ -19,14 +20,14 @@ namespace CodeCampApp.Pages.Speakers
         private readonly IMapper _mapper;
         private readonly ILogger<ListModel> _logger;
         private readonly Domain.Repositories.ICampRepository _campRepository;
-
+        
         // Properties .....................................
         // Bind property will help populate the Location property upon a POST operation
         // BindProperty works for POST operation by default
         [BindProperty]
-        public SpeakerModel Speaker { get; set; }
+        public SpeakerModel SpeakerModel { get; set; }
 
-        // Construrctors ........................
+        // Constructors ........................
         public EditModel(IConfiguration config, ILogger<ListModel> logger,
             IMapper mapper, Domain.Repositories.ICampRepository campRepository)
         {
@@ -39,6 +40,9 @@ namespace CodeCampApp.Pages.Speakers
         // Methods ..............................
         public IActionResult OnGet(int? speakerId)
         {
+            //string imageDataURL = "https://via.placeholder.com/200";
+            string imageDataURL = @"..\..\images\dummySpeakerImg.jpg";
+
             // Depending if this program is called from EDIT or ADD
             // The parameter speakerId can have a value or not.
             // If it does, search for the Speaker and display it, 
@@ -46,17 +50,27 @@ namespace CodeCampApp.Pages.Speakers
             if (speakerId.HasValue)
             {
                 // Retreive the deail for the selected model 
-                Domain.Entities.Speaker spker = _campRepository.GetSpeakerById(speakerId.Value);
+                Domain.Entities.Speaker domianSpker = _campRepository.GetSpeakerById(speakerId.Value);
 
                 // Copy data from Domain DTo to App Model
-                Speaker = _mapper.Map<SpeakerModel>(spker);
+                SpeakerModel = _mapper.Map<SpeakerModel>(domianSpker);
+
+                if (domianSpker.ProfileImageData != null)
+                {
+                    string imageBase64Data = Convert.ToBase64String(domianSpker.ProfileImageData);
+                    imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                }
             }
             else
             {
-                Speaker = new SpeakerModel();
+                SpeakerModel = new SpeakerModel();
             }
 
-            if (Speaker == null)
+            // Map manually the image name 
+            SpeakerModel.ProfileImageFilename = imageDataURL;
+            SpeakerModel.ProfileImageFormFile = null;
+
+            if (SpeakerModel == null)
             {
                 return RedirectToPage("./NotFound");
             }
@@ -64,11 +78,12 @@ namespace CodeCampApp.Pages.Speakers
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             // ModelState can help visualize a particular field from the POST operation
             // for example Model["Location"]. However, it also helps to validate 
             // if in general the input fields are valid
+            // NOTE: Validation enforces restrictions based on Model attributes 
             if (!ModelState.IsValid)
             {
                 // If input is not valid, render again the Cuisine type and return
@@ -76,41 +91,78 @@ namespace CodeCampApp.Pages.Speakers
                 return Page();
             }
 
+            // Domain entity to add or update
+            Domain.Entities.Speaker domainSpkrToAddOrUpd = null;
+
             // Determine if will be an ADD or Update
-            if (Speaker.Id > 0)
+            if (SpeakerModel.Id > 0)
             {
                 // UPDATE operation
-
                 // Convert Model into Domain entity
-                Domain.Entities.Speaker spkrToUpd = _mapper.Map<Domain.Entities.Speaker>(Speaker);
+                // Note: Auto mapping does not include image filename and data
+                domainSpkrToAddOrUpd = _mapper.Map<Domain.Entities.Speaker>(SpeakerModel);
 
-                // Update 
-                _campRepository.Update<Domain.Entities.Speaker>(spkrToUpd);
+                // If not image was selected. restore the current on file
+                if (SpeakerModel.ProfileImageFormFile == null)
+                {
+                    var domainLocOld = _campRepository.GetLocationById(SpeakerModel.Id);
+                    domainSpkrToAddOrUpd.ProfileImageFilename = domainLocOld.ProfileImageFilename;
+                    domainSpkrToAddOrUpd.ProfileImageData = domainLocOld.ProfileImageData;
+                }
             }
             else
             {
                 // ADD operation
-
                 // Convert Model into Domain entity
-                Domain.Entities.Speaker spkrToAdd = _mapper.Map<Domain.Entities.Speaker>(Speaker);
-
-                // Add the location to teh list
-                _campRepository.Add<Domain.Entities.Speaker>(spkrToAdd);
-
-                // Copy data from Domain DTO to App Model, to reflect the new ID
-                Speaker = _mapper.Map<SpeakerModel>(spkrToAdd);
+                // Note: Auto mapping does not include image filename and data
+                domainSpkrToAddOrUpd = _mapper.Map<Domain.Entities.Speaker>(SpeakerModel);
+                
             }
 
-            // Commit changes 
+            // IMAGE: Map manually the image filename and data to the new or updated record
+            if (SpeakerModel.ProfileImageFormFile != null)
+            {
+                // sync new filenane selected to the string representation in the model
+                SpeakerModel.ProfileImageFilename = SpeakerModel.ProfileImageFormFile.FileName;
+                // Update the image filename in the Domain entity
+                domainSpkrToAddOrUpd.ProfileImageFilename = SpeakerModel.ProfileImageFormFile.FileName;
+
+                // Convert image into a memory string and into the Entity byte array
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    await SpeakerModel.ProfileImageFormFile.CopyToAsync(ms);
+                    domainSpkrToAddOrUpd.ProfileImageData = ms.ToArray();
+                }
+            }
+
+            // Run Add or update operation at repository 
+            if (SpeakerModel.Id > 0)
+            {
+                // Update Domain Entity
+                _campRepository.Update<Domain.Entities.Speaker>(domainSpkrToAddOrUpd);
+            }
+            else
+            {
+                // Add the location to the list
+                // Note: Auto mapping does not include image filename and data
+                _campRepository.Add<Domain.Entities.Speaker>(domainSpkrToAddOrUpd);
+
+                // Copy data from Domain DTO to App Model, to reflect the new ID
+                // Note: Auto mapping does not include image filename and data
+                SpeakerModel = _mapper.Map<SpeakerModel>(domainSpkrToAddOrUpd);
+            }
+
+
+            // Commit changes in repository
             _campRepository.CommitChanges();
 
-            // Send to the paget that will be redirected, a message through TempData
+            // Send to the page that will be redirected, a message through TempData
             // to inform the user about the operation that took place. 
             TempData["ActionMessage"] = "Speaker saved!";
 
             // IMPORTANT: For ADD, EDIT, or DELETE operations allways redirect to a different page
             // Force re-direction to detail page, do not stay in curent page
-            return RedirectToPage("./Detail", new { speakerId = this.Speaker.Id });
+            return RedirectToPage("./Detail", new { speakerId = this.SpeakerModel.Id });
 
         }
     }

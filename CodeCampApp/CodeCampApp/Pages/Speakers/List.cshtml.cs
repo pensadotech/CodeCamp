@@ -72,7 +72,7 @@ namespace CodeCampApp.Pages.Speakers
                     {
                         string imageBase64Data = null;
                         //string imageDataURL = "https://via.placeholder.com/200";
-                        string imageDataURL = @"..\images\DummySpeakerIng.jpg";
+                        string imageDataURL = @"..\images\dummySpeakerImg.jpg";
 
                         if (dSpk.ProfileImageData != null)
                         {

@@ -27,22 +27,22 @@ namespace CodeCampApp.Models
         [Required, StringLength(150)]
         public string CityTown { get; set; }
 
-        [Required, StringLength(50)]
+        [Required, StringLength(20)]
         public string StateProvince { get; set; }
 
         [StringLength(50)]
         public string Company { get; set; }
 
-        [StringLength(100)]
+        [StringLength(200)]
         public string CompanyUrl { get; set; }
 
-        [StringLength(100)]
+        [StringLength(200)]
         public string BlogUrl { get; set; }
 
-        [StringLength(100)]
+        [StringLength(200)]
         public string Twitter { get; set; }
 
-        [StringLength(100)]
+        [StringLength(200)]
         public string GitHub { get; set; }
 
       

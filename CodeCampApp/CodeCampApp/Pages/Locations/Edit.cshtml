@@ -14,38 +14,43 @@
     <form method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
-                <div class="col-sm">
+
+                <div class="col-sm-5 p-4">
                     <div class="cardimg ">
                         @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
                         <img id="output"
-                             class="card-img-top imgRnd10 imageShadow cardLocimgHdr"
+                             class="card-img-top imgRnd40 imageShadow cardImgHdr"
                              src="@Model.LocationModel.ProfileImageFilename"
-                             alt="Card image cap">
+                             alt="Location image">
                     </div>
                     @* Image *@
-                    <div class="form-group">
-                        <label asp-for="@Model.LocationModel.ProfileImageFormFile"></label>
-                        <input type="file"
-                               accept=".jpg, .jpeg, .png"
-                               id="file-selector"
-                               asp-for="@Model.LocationModel.ProfileImageFormFile"
-                               class="form-control" />
-                        <span class="text-danger" asp-validation-for="LocationModel.ProfileImageFormFile"></span>
-                        <p id="status"></p>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="@Model.LocationModel.ProfileImageFormFile">Location profile image</label>
+                    <input type="file"
+                           accept=".jpg, .jpeg, .png"
+                           id="file-selector"
+                           asp-for="@Model.LocationModel.ProfileImageFormFile"
+                           class="form-control btn-outline-dark"
+                           placeholder="Add Profile picture" />
+                    <span class="text-danger" asp-validation-for="LocationModel.ProfileImageFormFile"></span>
+                    <p id="status"></p>
                 </div>
+                </div>
+
                 <div class="col-sm">
                     <div class="card-body">
+
                         @* Summarize all errors in the page *@
                         <div asp-validation-summary="All" class="text-danger"></div>
 
-                        @* The id is added to the page to be passed during teh POST operation *@
+                        @* The id is added to the page to be passed during the POST operation *@
                         @* to indetify what entity is been modified.  This must be hidden. *@
                         <input type="hidden" asp-for="@Model.LocationModel.Id" />
 
                         @* Location.VenueName *@
                         <div class="form-group ">
-                            <label class="cardLocTitleBlue cardLocTitleHeaderLabel" asp-for="@Model.LocationModel.VenueName"></label>
+                            <label class="cardLocTitleBlue cardTitleHeaderLabel"
+                                   asp-for="@Model.LocationModel.VenueName"></label>
                             <input asp-for="@Model.LocationModel.VenueName" class="form-control" />
                             @* This line is to provide validation to this field *@
                             <span class="text-danger" asp-validation-for="LocationModel.VenueName"></span>
@@ -53,7 +58,7 @@
 
                         @* Location.Address1 *@
                         <div class="form-group">
-                            <label asp-for="@Model.LocationModel.Address1"></label>
+                            <label asp-for="@Model.LocationModel.Address1">Address Line #1</label>
                             <input asp-for="@Model.LocationModel.Address1" class="form-control" />
                             @* This line is to provide validation to this field *@
                             <span class="text-danger" asp-validation-for="LocationModel.Address1"></span>
@@ -61,34 +66,40 @@
 
                         @* Location.Address2 *@
                         <div class="form-group">
-                            <label asp-for="@Model.LocationModel.Address2"></label>
+                            <label asp-for="@Model.LocationModel.Address2">Address Line #2</label>
                             <input asp-for="@Model.LocationModel.Address2" class="form-control" />
                             @* This line is to provide validation to this field *@
                             <span class="text-danger" asp-validation-for="LocationModel.Address2"></span>
                         </div>
 
-                        @* Location.CityTown *@
-                        <div class="form-group">
-                            <label asp-for="@Model.LocationModel.CityTown"></label>
-                            <input asp-for="@Model.LocationModel.CityTown" class="form-control" />
-                            @* This line is to provide validation to this field *@
-                            <span class="text-danger" asp-validation-for="LocationModel.CityTown"></span>
-                        </div>
-
-                        @* Location.StateProvince *@
-                        <div class="form-group">
-                            <label asp-for="@Model.LocationModel.StateProvince"></label>
-                            <input asp-for="@Model.LocationModel.StateProvince" class="form-control" />
-                            @* This line is to provide validation to this field *@
-                            <span class="text-danger" asp-validation-for="LocationModel.StateProvince"></span>
-                        </div>
-
-                        @* Location.PostalCode *@
-                        <div class="form-group">
-                            <label asp-for="@Model.LocationModel.PostalCode"></label>
-                            <input asp-for="@Model.LocationModel.PostalCode" class="form-control" />
-                            @* This line is to provide validation to this field *@
-                            <span class="text-danger" asp-validation-for="LocationModel.PostalCode"></span>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                @* Location.CityTown *@
+                                <div class="form-group">
+                                    <label asp-for="@Model.LocationModel.CityTown">City/Town</label>
+                                    <input asp-for="@Model.LocationModel.CityTown" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="LocationModel.CityTown"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                @* Location.StateProvince *@
+                                <div class="form-group">
+                                    <label asp-for="@Model.LocationModel.StateProvince">State/Province</label>
+                                    <input asp-for="@Model.LocationModel.StateProvince" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="LocationModel.StateProvince"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                @* Location.PostalCode *@
+                                <div class="form-group">
+                                    <label asp-for="@Model.LocationModel.PostalCode">Postal Code</label>
+                                    <input asp-for="@Model.LocationModel.PostalCode" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="LocationModel.PostalCode"></span>
+                                </div>
+                            </div>
                         </div>
 
                         @* Location.Country *@
@@ -101,22 +112,21 @@
 
                         @* buttons *@
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a asp-page="./List" class="btn btn-primary">Cancel</a>
-
+                        <a asp-page="./List" class="btn btn-secondary">Cancel</a>
 
                     </div>
                 </div>
+
             </div>
         </div>
     </form>
-
 </div>
-
-
 
 
 @* VS provides this partial view to add realtime response for validaitons *@
 @section Scripts {
+
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
 
     <script>
         // This script helps collecting the file from the input tag
@@ -128,7 +138,8 @@
         const output = document.getElementById('output');
 
         if (window.FileList && window.File && window.FileReader) {
-            // Get the INPUT element named as "fileSelector" as teh INPUT tag changes
+
+            // Get the INPUT element named as "fileSelector" as the INPUT tag changes
             document.getElementById('file-selector').addEventListener('change', event => {
 
                 console.log("output:", output)
@@ -146,7 +157,6 @@
                 if (!file.type) {
                     status.textContent =
                         'Error: The File.type property does not appear to be supported on this browser.';
-
                     return;
                 }
 
