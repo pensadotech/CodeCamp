@@ -1,0 +1,199 @@
+﻿@* The page will receive an aps-rout-talkId from calling page *@
+@* Important: page is handling the TalkModel, and not Domain.Talk *@
+@* NOTE: Add thr null value indicator if this page is used for EDit and ADD operations *@
+
+@page "{talkId:int?}"
+@model CodeCampApp.Pages.Talks.EditModel
+@{
+    ViewData["Title"] = "Talk Edit";
+}
+
+<h1>Talk Edit</h1>
+
+
+<div class="card bg-info mb-2">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <div class="cardimg p-3">
+                        @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                        <img id="output"
+                             class="card-img-top imgRnd40 imageShadow cardImgHdr"
+                             src="@Model.TalkModel.ProfileImageFilename"
+                             alt="Speaker image">
+                    </div>
+                    @* Image *@
+                    <div class="form-group">
+                        <label asp-for="@Model.TalkModel.ProfileImageFormFile"></label>
+                        <input type="file"
+                               accept=".jpg, .jpeg, .png"
+                               id="file-selector"
+                               asp-for="@Model.TalkModel.ProfileImageFormFile"
+                               class="form-control btn-outline-dark"
+                               placeholder="Add Profile picture" />
+                        <span class="text-danger" asp-validation-for="TalkModel.ProfileImageFormFile"></span>
+                        <p id="status"></p>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="card-body">
+
+                        @* Summarize all errors in the page *@
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        @* The id is added to the page to be passed during the POST operation *@
+                        @* to identify what entity is been modified.  This must be hidden. *@
+                        <input type="hidden" asp-for="@Model.TalkModel.Id" />
+
+                        @* Talk.TalkCode *@
+                        <div class="form-group">
+                            <label class="cardTitleHeaderLabel"
+                                   asp-for="@Model.TalkModel.TalkCode">
+                                Name
+                            </label>
+                            <input asp-for="@Model.TalkModel.TalkCode" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="TalkModel.TalkCode"></span>
+                        </div>
+
+                        @* Talk.Title *@
+                        <div class="form-group">
+                            <label class="cardTitleHeaderLabel"
+                                   asp-for="@Model.TalkModel.Title">
+                                Name
+                            </label>
+                            <input asp-for="@Model.TalkModel.Title" class="form-control" />
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="TalkModel.Title"></span>
+                        </div>
+
+                        @* Speaker.Description *@
+                        <div class="form-group">
+                            <label class=""
+                                   asp-for="@Model.TalkModel.Abstract">
+                                About the speaker
+                            </label>
+                            <textarea asp-for="@Model.TalkModel.Abstract"
+                                      class="form-control" type="text" rows="3"
+                                      placeholder="Please add brief description">
+                            </textarea>
+                            @* This line is to provide validation to this field *@
+                            <span class="text-danger" asp-validation-for="TalkModel.Abstract"></span>
+                        </div>
+
+                        @* Track and Level *@
+                        <div class="row">
+                            <div class="col-sm-7">
+                                @* Talk.Track *@
+                                <div class="form-group">
+                                    <label class="cardTitleHeaderLabel"
+                                           asp-for="@Model.TalkModel.Track">
+                                        Name
+                                    </label>
+                                    <input asp-for="@Model.TalkModel.Track" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="TalkModel.Track"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                @* Talk.Level *@
+                                <div class="form-group">
+                                    <label class="cardTitleHeaderLabel"
+                                           asp-for="@Model.TalkModel.Level">
+                                        Name
+                                    </label>
+                                    <input asp-for="@Model.TalkModel.Track" class="form-control" />
+                                    @* This line is to provide validation to this field *@
+                                    <span class="text-danger" asp-validation-for="TalkModel.Level"></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @* Total weeks & Start date *@
+                        <div class="row">
+
+                        </div>
+
+                        @* Days and Room  *@
+                        <div class="row">
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+@* VS provides this partial view to add realtime response for validaitons *@
+@section Scrpts {
+
+    <script>
+
+        // This script helps collecting the file from the input tag
+
+        // Get pointer to elements in the DOM
+        // Status below input tag
+        const status = document.getElementById('status');
+        // Image inside the card
+        const output = document.getElementById('output');
+
+        if (window.FileList && window.File && window.FileReader) {
+
+            // Get the INPUT element named as "fileSelector" as the INPUT tag changes
+            document.getElementById('file-selector').addEventListener('change', event => {
+
+                console.log("output:", output)
+
+                // Initialize output and status
+                output.src = '';
+                status.textContent = '';
+
+                // Get the local files structure
+                const file = event.target.files[0];
+
+                console.log("File:", file)
+
+                // If not a file type, raise error
+                if (!file.type) {
+                    status.textContent =
+                        'Error: The File.type property does not appear to be supported on this browser.';
+                    return;
+                }
+
+                // If teh file is not an image, raise error
+                if (!file.type.match('image.*')) {
+                    status.textContent = 'Error: The selected file does not appear to be an image.'
+                    return;
+                }
+
+                // Instantiate a file reader
+                const reader = new FileReader();
+
+                // upon load event, get the file name
+                reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                });
+
+                // Load file in memory
+                reader.readAsDataURL(file);
+
+            })
+        }
+
+    </script>
+
+}

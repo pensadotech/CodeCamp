@@ -14,28 +14,20 @@ namespace CodeCamp.Domain.Entities
         public int Id { get; set; }
       
         public string FirstName { get; set; }
-       
-        public string LastName { get; set; }
-        
         public string MiddleName { get; set; }
+        public string LastName { get; set; }
 
         public string Description { get; set; }
-
         public string Topics { get; set; }
         public string CityTown { get; set; }
-
         public string StateProvince { get; set; }
-
         public string Company { get; set; }
-
         public string CompanyUrl { get; set; }
-
         public string BlogUrl { get; set; }
-        
         public string Twitter { get; set; }
-        
         public string GitHub { get; set; }
 
+        // Image profile
         public string ProfileImageFilename { get; set; }
         public byte[] ProfileImageData { get; set; }
 

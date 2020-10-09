@@ -1,7 +1,7 @@
 ﻿@* The page will receive an aps-rout-speakerId from calling page *@
 @* Important: page is handling the SpeakerModel, and not Domain.Speaker *@
 
-@page
+@page "{speakerId:int}"
 @model CodeCampApp.Pages.Speakers.DeleteModel
 @{
     ViewData["Title"] = "Speaker Delete";
@@ -10,9 +10,10 @@
 <h1>Speaker Delete</h1>
 
 <div class="alert alert-danger">
-    <h5>Are you sure you want to delete speaker :
+    <h5>
+        Are you sure you want to delete speaker :
         @Model.SpeakerModel.FirstName @Model.SpeakerModel.MiddleName @Model.SpeakerModel.LastName?
-    </h5> 
+    </h5>
 </div>
 
 <div class="card bg-info mb-2">

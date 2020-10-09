@@ -31,13 +31,6 @@ namespace CodeCampApp.Mappings
                .ForMember(c => c.Venue, o => o.MapFrom(m => m.Location.VenueName))
                .ReverseMap();
 
-            // Map Domain.Location to App.LocationModel
-            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
-            this.CreateMap<Location, LocationModel>()
-              .ReverseMap()
-              .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
-              .ForMember(t => t.ProfileImageData, opt => opt.Ignore());
-
             // Map Domain.Talk to App.TalkModel
             // Example for a mapping ignoring to populate Parent and Children objects
             // In this case, the Domain.Talk.Camp will not be copied. 
@@ -45,15 +38,24 @@ namespace CodeCampApp.Mappings
             // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Talk, TalkModel>()
                 .ReverseMap()
-                .ForMember(t => t.Camp, opt => opt.Ignore());
-             // .ForMember(t => t.Speaker, opt => opt.Ignore());
+                .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
+                .ForMember(t => t.ProfileImageData, opt => opt.Ignore());
+                //.ForMember(t => t.Speaker.ProfileImageFilename, opt => opt.Ignore()); how???
+
+            // Map Domain.Location to App.LocationModel
+            // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
+            this.CreateMap<Location, LocationModel>()
+              .ReverseMap()
+              .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
+              .ForMember(t => t.ProfileImageData, opt => opt.Ignore());
+                        
 
             // Mapp Domain.Speaker to App.SpeakerModel
             // ReverseMap: is to indicate bidirectional mapping (Model <--> Entitiy)
             this.CreateMap<Speaker, SpeakerModel>()
                .ReverseMap()
                .ForMember(t => t.ProfileImageFilename, opt => opt.Ignore())
-               .ForMember(t => t.ProfileImageData, opt => opt.Ignore()); ;
+               .ForMember(t => t.ProfileImageData, opt => opt.Ignore());
 
 
             // < Create other mappinsg in here >

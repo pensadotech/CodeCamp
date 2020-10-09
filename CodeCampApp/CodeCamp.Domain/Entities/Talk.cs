@@ -11,9 +11,23 @@ namespace CodeCamp.Domain.Entities
     public class Talk
     {
         public int Id { get; set; }
+
+        // TalkCode is a moniker is an alterntive ID to be used from website, instead of using the ID
+        public string TalkCode { get; set; }
         public string Title { get; set; }
         public string Abstract { get; set; }
+        public string Track { get; set; }
         public int Level { get; set; }
+        public string Room { get; set; }
+
+        public string WeekDays { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.MinValue;
+        public string StartTime { get; set; }
+        public int LengthInWeeks { get; set; } = 1;
+
+        // Image profile
+        public string ProfileImageFilename { get; set; }
+        public byte[] ProfileImageData { get; set; }
 
         // Parent releationship
         // Camp is the parent class,however aslo add the ID to make 

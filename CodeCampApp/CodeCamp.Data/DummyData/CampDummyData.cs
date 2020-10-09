@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using CodeCamp.Domain.Entities;
 
+
+// TODO: Correct Camp and Talk dummy data
+
 namespace CodeCamp.Data.DummyData
 {
     /// <summary>
@@ -103,20 +106,20 @@ namespace CodeCamp.Data.DummyData
             var camp1 = new Camp()
             {
                 Id = 1,
-                Moniker = "ATL2019",
+                CampCode = "ATL2019",
                 Name = "Xtreme Code Camp",
-                EventDate = new DateTime(2019, 11, 15),
-                Length = 12
+                StartDate = new DateTime(2020, 9, 15),
+                LengthInWeeks = 12
             };
 
             // Camp #2
             var camp2 = new Camp()
             {
                 Id = 1,
-                Moniker = "ATL2020",
+                CampCode = "ATL2020",
                 Name = "UCI Code Camp",
-                EventDate = new DateTime(2020, 1, 20),
-                Length = 12
+                StartDate = new DateTime(2020, 9, 5),
+                LengthInWeeks = 12
             };
 
 
@@ -125,6 +128,88 @@ namespace CodeCamp.Data.DummyData
             camps.Add(camp2);
 
             return camps;
+        }
+
+        // Talks
+        public static List<Talk> GetTalks()
+        {
+            var talks = new List<Talk>();
+
+            // Talk #1
+            var talk1 = new Talk()
+            {
+                Id = 1,
+                TalkCode = "TLK001",
+                Title = "Entity Framework From Scratch",
+                Abstract = "Entity Framework from scratch in an hour. Probably cover it all.",
+                Track = ".NET C#",
+                Level = 100,
+                WeekDays = "Mon,Wed,Frd",
+                StartDate = new DateTime(2020, 9, 5),
+                LengthInWeeks = 12,
+                Room = "C-204",
+                ProfileImageFilename = "",
+                ProfileImageData = null
+            };
+
+            // Talk #2
+            var talk2 = new Talk()
+            {
+                Id = 2,
+                TalkCode = "TLK002",
+                Title = "API From Scratch",
+                Abstract = "API advance topic, all you need to know. ",
+                Track = ".NET C#",
+                Level = 200,
+                WeekDays="Tue,Thu,Sat",
+                StartDate = new DateTime(2019, 11, 15),
+                LengthInWeeks = 10,
+                Room = "C-204",
+                ProfileImageFilename = "",
+                ProfileImageData = null
+            };
+
+            // Talk #3
+            var talk3 = new Talk()
+            {
+                Id = 3,
+                TalkCode = "TLK003",
+                Title = "Entity Framework From Scratch",
+                Abstract = "Entity Framework from scratch in an hour. Probably cover it all.",
+                Track = "Java Script",
+                Level = 100,
+                WeekDays = "Tue,Thu,Sat",
+                StartDate = new DateTime(2019, 11, 15),
+                LengthInWeeks = 15,
+                Room = "C-204",
+                ProfileImageFilename = "",
+                ProfileImageData = null
+            };
+
+            // Talk #4
+            var talk4 = new Talk()
+            {
+                Id = 4,
+                TalkCode = "TLK004",
+                Title = "API From Scratch",
+                Abstract = "API advance topic, all you need to know. ",
+                Track = "Java Script & React",
+                Level = 200,
+                WeekDays = "Mon,Tue,Wed,Thu,Frd",
+                StartDate = new DateTime(2019, 11, 15),
+                LengthInWeeks = 12,
+                Room = "C-204",
+                ProfileImageFilename = "",
+                ProfileImageData = null
+            };
+
+            // Add talks to list 
+            talks.Add(talk1);
+            talks.Add(talk2);
+            talks.Add(talk3);
+            talks.Add(talk4);
+
+            return talks;
         }
 
         // Locations
@@ -143,7 +228,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "12345",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -159,7 +244,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -175,7 +260,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -191,7 +276,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -207,7 +292,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -223,7 +308,7 @@ namespace CodeCamp.Data.DummyData
                 StateProvince = "CA",
                 PostalCode = "54321",
                 Country = "USA",
-                ProfileImageFilename = "dumyLocImg.jpg",
+                ProfileImageFilename = "",
                 ProfileImageData = null,
                 ContactPhone = "949-123-1234"
             };
@@ -238,56 +323,6 @@ namespace CodeCamp.Data.DummyData
             Locations.Add(location6);
 
             return Locations;
-        }
-
-        // Talks
-        public static List<Talk> GetTalks()
-        {
-            var talks = new List<Talk>();
-
-            // Talk #1
-            var talk1 = new Talk()
-            {
-                Id = 1,
-                Title = "Entity Framework From Scratch",
-                Abstract = "Entity Framework from scratch in an hour. Probably cover it all.",
-                Level = 100
-            };
-
-            // Talk #2
-            var talk2 = new Talk()
-            {
-                Id = 2,
-                Title = "API From Scratch",
-                Abstract = "API advance topic, all you need to know. ",
-                Level = 200
-            };
-
-            // Talk #3
-            var talk3 = new Talk()
-            {
-                Id = 3,
-                Title = "Entity Framework From Scratch",
-                Abstract = "Entity Framework from scratch in an hour. Probably cover it all.",
-                Level = 100
-            };
-
-            // Talk #4
-            var talk4 = new Talk()
-            {
-                Id = 4,
-                Title = "API From Scratch",
-                Abstract = "API advance topic, all you need to know. ",
-                Level = 200
-            };
-
-            // Add talks to list 
-            talks.Add(talk1);
-            talks.Add(talk2);
-            talks.Add(talk3);
-            talks.Add(talk4);
-
-            return talks;
         }
 
         // Speakers
@@ -310,7 +345,9 @@ namespace CodeCamp.Data.DummyData
                 CompanyUrl = "http://www.pensadotech.com/",
                 BlogUrl = "http://pensadotech.blogspot.com/",
                 GitHub = "https://pensadotech.github.io/",
-                Twitter = "https://twitter.com/pensadotech"                
+                Twitter = "https://twitter.com/pensadotech",
+                ProfileImageFilename = "",
+                ProfileImageData = null
             };
 
             // Sepeaker #2
@@ -328,7 +365,9 @@ namespace CodeCamp.Data.DummyData
                 CompanyUrl = "http://www.pensadotech.com/",
                 BlogUrl = "http://pensadotech.blogspot.com/",
                 GitHub = "https://pensadotech.github.io/",
-                Twitter = "https://twitter.com/pensadotech"
+                Twitter = "https://twitter.com/pensadotech",
+                ProfileImageFilename = "",
+                ProfileImageData = null
             };
 
             // Sepeaker #3
@@ -346,7 +385,9 @@ namespace CodeCamp.Data.DummyData
                 CompanyUrl = "http://www.pensadotech.com/",
                 BlogUrl = "http://pensadotech.blogspot.com/",
                 GitHub = "https://pensadotech.github.io/",
-                Twitter = "https://twitter.com/pensadotech"
+                Twitter = "https://twitter.com/pensadotech",
+                ProfileImageFilename = "",
+                ProfileImageData = null
             };
 
             // Sepeaker #4
@@ -364,7 +405,9 @@ namespace CodeCamp.Data.DummyData
                 CompanyUrl = "http://www.pensadotech.com/",
                 BlogUrl = "http://pensadotech.blogspot.com/",
                 GitHub = "https://pensadotech.github.io/",
-                Twitter = "https://twitter.com/pensadotech"
+                Twitter = "https://twitter.com/pensadotech",
+                ProfileImageFilename = "",
+                ProfileImageData = null
             };
 
 

@@ -1,0 +1,213 @@
+﻿@* Important: page is handling teh TalkModel, and not Domain.Speaker *@
+
+@page
+@model CodeCampApp.Pages.Talks.ListModel
+@{
+    ViewData["Title"] = "Talk List";
+}
+
+<h1>Talks List</h1>
+
+@if (@Model.ActionMessage != null)
+{
+    <div class="alert alert-danger">@Model.ActionMessage</div>
+}
+
+<div class="container">
+
+    <!-- row 1 -->
+    <div class="row">
+        <div class="col-sm ml-0">
+            <div class="d-flex flex-row">
+                <div class="pr-4">
+                    @* Button to add a new element *@
+                    <a class="btn btn-primary addbtn"
+                       asp-page="./Edit">
+                        <i class="fas fa-plus-circle"></i>
+                        Add
+                    </a>
+                </div>
+                <div class="p-0">
+                    <form method="get">
+                        <div class="from-group mb-2">
+                            <div class="input-group">
+                                <input type="search" class="form-control " placeholder="Search Talks"
+                                       asp-for="SearchTerm" />
+                                <span class="input-group-append">
+                                    <button class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* row 1 *@
+
+    <!-- row 2 -->
+    <div class="row">
+
+        @foreach (var tlk in Model.TalkModels)
+        {
+            <div class="col-12">
+                <div class="row mt-2 p-2 container text-white bg-info imgRnd10">
+
+                    @* Col #1 *@
+                    <div class="col-sm-3">
+
+                        <div class="">
+                            <a class="btn-lg" data-toggle="tooltip" title="Detail"
+                               asp-page=""
+                               asp-route-talkId="@tlk.Id">
+                                <img class="card-img-top imgRnd40 imageShadow cardspkerlistimg"
+                                     src="@tlk.ProfileImageFilename" alt="Image speaker">
+                            </a>
+                            <div class="">
+                                <a class="btn-lg " data-toggle="tooltip" title="Detail"
+                                   asp-page="./Detail"
+                                   asp-route-talkId="@tlk.Id">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
+                                <a class="btn-lg " data-toggle="tooltip" title="Edit"
+                                   asp-page="./Edit"
+                                   asp-route-talkId="@tlk.Id">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn-lg "
+                                   asp-page="./Delete" data-toggle="tooltip" title="Delete"
+                                   asp-route-talkId="@tlk.Id">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @* Col #2 *@
+                    <div class="col-sm-5">
+
+                        <div class="">
+                            <h6>@tlk.TalkCode</h6>
+                            <h4>@tlk.Title</h4>
+                            <h6>Description</h6>
+                            <p>@tlk.Abstract</p>
+                            <p>Track: <span class="badge badge-primary">@tlk.Track</span>  Level: <span class="badge badge-warning">@tlk.Level</span> </p>
+                            <p>
+                                <i>Total Weeks:</i> <span class="badge badge-dark"> @tlk.LengthInWeeks</span>
+                                <i>StartDate:</i> <span class="badge badge-dark"> @tlk.StartDate @tlk.StartTime</span>
+                            </p>
+                            <p>
+                                <i>Days</i>: <span class="badge badge-dark">@tlk.WeekDays</span>
+                                <i>Room:</i> <span class="badge badge-dark">@tlk.Room</span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    @* Col #3 *@
+                    <div class="col-sm">
+
+                        <div class="">
+                            <h6>Speaker</h6>
+                            <h4>@tlk.SpeakerFirstName @tlk.SpeakerMiddleName @tlk.SpeakerLastName </h4>
+                            <p>@tlk.SpeakerCityTown @tlk.SpeakerStateProvince</p>
+
+                            <div>
+                                <a id="speakerDetail" talkId=@tlk.Id value=@tlk.SpeakerId 
+                                   class="btn-lg speaker" data-toggle="tooltip" title="Detail"
+                                   asp-page="./../Speakers/Detail"
+                                   asp-route-speakerId="@tlk.SpeakerId">
+                                    <img class="card-img-top imgRnd40 imageShadow cardtalkspkerlistimg"
+                                         src="@tlk.SpeakerProfileImageFilename" alt="Image speaker">
+                                </a>
+                            </div>
+
+                            <div id="speakerLinks" talkId=@tlk.Id class="spkearLinkGrp">
+                                <div class="d-flex flex-nowrap">
+                                    <div class="spkerLinkImgHolder">
+                                        <a href="@tlk.SpeakerBlogUrl" target="_blank" class="card-link">
+                                            <img class="spkerLink imgRnd10 imageShadow"
+                                                 src="~/images/blog.png" alt="blogg">
+                                        </a>
+                                    </div>
+                                    <div class="spkerLinkImgHolder">
+                                        <a href="@tlk.SpeakerTwitter" target="_blank" class="card-link">
+                                            <img class="spkerLink imgRnd10 imageShadow"
+                                                 src="~/images/Twitter.png" alt="Twitter">
+                                        </a>
+                                    </div>
+                                    <div class="spkerLinkImgHolder">
+                                        <a href="@tlk.SpeakerGitHub" target="_blank" class="card-link">
+                                            <img class="spkerLink imgRnd10 imageShadow"
+                                                 src="~/images/githubPage.jpg" alt="GitHub">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+    @* row 2 *@
+
+</div>
+@* Container *@
+
+@section footer {
+    <!-- Variable that comes from page controller / Variable that comes from appsettngs.json -->
+}
+
+@section Scripts {
+
+    
+
+   <script>
+
+       // TODO: Document this.
+       document.querySelectorAll('#speakerDetail').forEach(spkrDetail => {
+
+           // Detect teh basei components for speaker
+           var talkId = spkrDetail.getAttribute('talkId')
+           var spkrId = spkrDetail.getAttribute('value')
+
+           if (spkrId == 0) {
+               // Disable Speaker details 
+               spkrDetail.removeAttribute("class")
+               spkrDetail.setAttribute("class", "btn-lg isDisabled")
+               spkrDetail.removeAttribute('href')
+
+               // Disable speaker links 
+               DisableSpeakerLinks(talkId) 
+           }
+
+       })
+
+       function DisableSpeakerLinks(tgtTalkId) {
+
+           document.querySelectorAll('#speakerLinks').forEach(spkrLink => {
+
+               var talkId = spkrLink.getAttribute('talkId')
+
+               if (tgtTalkId === talkId) {
+
+                   // Disable speaker links
+                   spkrLink.removeAttribute("class")
+                   spkrLink.setAttribute("class", "spkearLinkGrp isDisabled")
+               }
+
+           })
+       }
+
+   </script>
+
+}
+

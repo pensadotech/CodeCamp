@@ -115,6 +115,8 @@ namespace CodeCampApp.Pages.Locations
             }
             else
             {
+                // TODO: How avoid repeated records?
+
                 // ADD operation
                 // Convert Model into Domain entity
                 // Note: Auto mapping does not include image filename and data

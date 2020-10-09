@@ -275,16 +275,16 @@ namespace CodeCamp.Data.Repositories
         public Camp GetCampById(string campMoniker)
         {
             // Find first record that matches the incoming parameter
-            Camp camp = _camps.SingleOrDefault(camp => camp.Moniker == campMoniker);
+            Camp camp = _camps.SingleOrDefault(camp => camp.CampCode == campMoniker);
 
             return camp;
         }
 
-        public IEnumerable<Camp> GetAllCampsByEventDate(DateTime campEventDate)
+        public IEnumerable<Camp> GetAllCampsByEventDate(DateTime campStartDate)
         {
             // Get all records from the list, but filter if incoming parameters has a value
             IEnumerable<Camp> camps = from camp in _camps
-                                      where camp.EventDate >= campEventDate
+                                      where camp.StartDate >= campStartDate
                                       orderby camp.Name
                                       select camp;
             return camps;

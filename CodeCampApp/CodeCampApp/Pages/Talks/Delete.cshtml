@@ -1,0 +1,64 @@
+﻿@* The page will receive an aps-rout-talkId from calling page *@
+@* Important: page is handling the TalkModel, and not Domain.Talk *@
+
+@page "{talkId:int}"
+@model CodeCampApp.Pages.Talks.DeleteModel
+@{
+    ViewData["Title"] = "Talk Delete";
+}
+
+<h1>Talk Delete</h1>
+
+<div class="alert alert-danger">
+    <h5>
+        Are you sure you want to delete talk :
+        @Model.TalkModel.Title (@Model.TalkModel.TalkCode)?
+    </h5>
+</div>
+
+<div class="card bg-info mb-2">
+    <div class="container">
+        >
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="cardimg p-3">
+                    @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                    <img class="card-img-top imgRnd40 imageShadow cardImgHdr"
+                         src="@Model.TalkModel.ProfileImageFilename"
+                         alt="Talk to delete">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    <h6>@Model.TalkModel.TalkCode</h6>
+                    <h4 class="card-title cardTitleBlue">@Model.TalkModel.Title</h4>
+                    <h6>Description:</h6>
+                    <h5> <span class="spkerDescription">@Model.TalkModel.Abstract</span></h5>
+                    <h6 class="card-text">
+                        <i>Track: </i> <span class="badge badge-primary">@Model.TalkModel.Track</span>
+                        <i>Level:</i> <span class="badge badge-warning">@Model.TalkModel.Level</span>
+                    </h6>
+                    <p>
+                        <i>StartDate:</i> <span class="badge badge-dark"> @Model.TalkModel.StartDate @Model.TalkModel.StartTime</span>
+                    </p>
+                    <p>
+                        <i>Total Weeks:</i> <span class="badge badge-dark"> @Model.TalkModel.LengthInWeeks</span>
+                        <i>Room:</i> <span class="badge badge-dark">@Model.TalkModel.Room</span>
+                        <i>Days</i>: <span class="badge badge-dark">@Model.TalkModel.WeekDays</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@* In Razor pages, we have two default handlers, OnGet and OnPost *@
+@* The POTS operation will be used to take a delete action *@
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete!</button>
+    <a asp-page="./List" class="btn btn-secondary">Cancel</a>
+</form>
+

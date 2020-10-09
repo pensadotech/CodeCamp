@@ -5,26 +5,26 @@
 @model CodeCampApp.Models.CampModel
 
 <tr>
-    <td>@Model.Moniker</td>
+    <td>@Model.CampCode</td>
     <td>@Model.Name</td>
-    <td>@Model.EventDate</td>
-    <td>@Model.Length</td>
+    <td>@Model.StartDate</td>
+    <td>@Model.LengthInWeeks</td>
     <td>@Model.LocationCityTown</td>
     <td>@Model.LocationStateProvince</td>
     <td>
         <a class="btn-lg"
            asp-page="./Detail"
-           asp-route-moniker="@Model.Moniker">
+           asp-route-moniker="@Model.CampCode">
             <i class="fa fa-search-plus"></i> Detail
         </a>
         <a class="btn-lg"
            asp-page="./Edit"
-           asp-route-moniker="@Model.Moniker">
+           asp-route-moniker="@Model.CampCode">
             <i class="fa fa-edit"></i> Edit
         </a>
         <a class="btn-lg"
            asp-page="./Delete"
-           asp-route-moniker="@Model.Moniker">
+           asp-route-moniker="@Model.CampCode">
             <i class="fa fa-trash"></i> Delete
         </a>
     </td>

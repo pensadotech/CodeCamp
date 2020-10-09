@@ -46,7 +46,7 @@ namespace CodeCampApp.Models
         public string GitHub { get; set; }
 
       
-
+        // Image profile
         public string ProfileImageFilename { get; set; }
 
         [Display(Name = "Profile Picture")]

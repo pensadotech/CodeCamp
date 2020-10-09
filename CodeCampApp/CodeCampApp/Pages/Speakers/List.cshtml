@@ -31,7 +31,7 @@
                     <form method="get">
                         <div class="from-group mb-2">
                             <div class="input-group">
-                                <input type="search" class="form-control " placeholder="Search Speaker"
+                                <input type="search" class="form-control " placeholder="Search Speakers"
                                        asp-for="SearchTerm" />
                                 <span class="input-group-append">
                                     <button class="btn btn-primary">
@@ -56,7 +56,7 @@
                 <div class="row mt-2 p-2 container text-white bg-info imgRnd10">
 
                     @* Col #1 *@
-                    <div col="col-2">
+                    <div class="col-sm-3">
 
                         <div class="spkerdatagrp1">
                             @* Car top *@
@@ -88,10 +88,10 @@
                     </div>
 
                     @* Col #2 *@
-                    <div col="col-2">
+                    <div class="col-sm-2">
 
                         <div class="spkerdatagrp2">
-                            <h4 class="card-title">@spk.FirstName @spk.MiddleName @spk.LastName</h4>
+                            <h4>@spk.FirstName @spk.MiddleName @spk.LastName</h4>
                             <div class="spkearLinkGrp">
                                 <div class="d-flex flex-nowrap">
                                     <div class="spkerLinkImgHolder">
@@ -119,7 +119,7 @@
                     </div>
 
                     @* Col #3 *@
-                    <div col="col-8">
+                    <div class="col-sm-7">
 
                         <div class="spkerdatagrp3 container">
                             <div class="row">

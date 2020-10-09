@@ -1,0 +1,100 @@
+﻿@* The page will receive an aps-rout-talkId from calling page *@
+@* Important: page is handling the TalkModel, and not Domain.Talk *@
+
+@page "{talkId:int}"
+@model CodeCampApp.Pages.Talks.DetailModel
+@{
+    ViewData["Title"] = "Talk Detail";
+}
+
+
+<div class="card bg-info mb-2">
+    <div class="container">
+        >
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="cardimg p-3">
+                    @*<img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">*@
+                    <img class="card-img-top imgRnd40 imageShadow cardImgHdr"
+                         src="@Model.TalkModel.ProfileImageFilename"
+                         alt="Talk to delete">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    <h6>@Model.TalkModel.TalkCode</h6>
+                    <h4 class="card-title cardTitleBlue">@Model.TalkModel.Title</h4>
+                    <h6>Description:</h6>
+                    <h5> <span class="spkerDescription">@Model.TalkModel.Abstract</span></h5>
+                    <h6 class="card-text">
+                        <i>Track: </i> <span class="badge badge-primary">@Model.TalkModel.Track</span>
+                        <i>Level:</i> <span class="badge badge-warning">@Model.TalkModel.Level</span>
+                    </h6>
+                    <p>
+                        <i>Total Weeks:</i> <span class="badge badge-dark"> @Model.TalkModel.LengthInWeeks</span>
+                        <i>StartDate:</i> <span class="badge badge-dark"> @Model.TalkModel.StartDate @Model.TalkModel.StartTime</span>
+                    </p>
+                    <p>
+                        <i>Days</i>: <span class="badge badge-dark">@Model.TalkModel.WeekDays</span>
+                        <i>Room:</i> <span class="badge badge-dark">@Model.TalkModel.Room</span>
+                    </p>
+
+                    <div class="">
+                        <h6>Speaker</h6>
+
+                        <div class="d-flex flex-row">
+                        
+                            <div class="p-2">
+                                <a class="btn-lg" data-toggle="tooltip" title="Detail"
+                                   asp-page=""
+                                   asp-route-speakerId="@Model.TalkModel.SpeakerId">
+                                    <img class="card-img-top imgRnd40 imageShadow cardtalkspkerlistimg"
+                                         src="@Model.TalkModel.SpeakerProfileImageFilename" alt="Image speaker">
+                                </a>
+                            </div>
+                            <div class="p-2">
+
+                                <h4>@Model.TalkModel.SpeakerFirstName @Model.TalkModel.SpeakerMiddleName @Model.TalkModel.SpeakerLastName </h4>
+                                <p>@Model.TalkModel.SpeakerCityTown @Model.TalkModel.SpeakerStateProvince</p>
+                                
+                                <div >
+                                    <div class="d-flex flex-nowrap">
+                                        <div class="spkerLinkImgHolder">
+                                            <a href="@Model.TalkModel.SpeakerBlogUrl" target="_blank" class="card-link">
+                                                <img class="spkerLink imgRnd10 imageShadow"
+                                                     src="~/images/blog.png" alt="blogg">
+                                            </a>
+                                        </div>
+                                        <div class="spkerLinkImgHolder">
+                                            <a href="@Model.TalkModel.SpeakerTwitter" target="_blank" class="card-link">
+                                                <img class="spkerLink imgRnd10 imageShadow"
+                                                     src="~/images/Twitter.png" alt="Twitter">
+                                            </a>
+                                        </div>
+                                        <div class="spkerLinkImgHolder">
+                                            <a href="@Model.TalkModel.SpeakerGitHub" target="_blank" class="card-link">
+                                                <img class="spkerLink imgRnd10 imageShadow"
+                                                     src="~/images/githubPage.jpg" alt="GitHub">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<a class="btn btn-primary" asp-page="./List"> Return to Talk list </a>
+
+<a class="btn btn-primary" asp-page="./Edit" asp-route-speakerId="@Model.TalkModel.Id">
+    <i class="fa fa-edit"></i> Edit
+</a>

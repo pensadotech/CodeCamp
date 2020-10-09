@@ -10,14 +10,15 @@ namespace CodeCampApp.Models
     {
         public int Id { get; set; }
 
+        // CampCode is a moniker is an alterntive ID to be used from website, instead of using the ID
+        [Required, StringLength(10)]
+        public string CampCode { get; set; }
+
         [Required, StringLength(80)]
         public string Name { get; set; }
 
-        [Required, StringLength(10)]
-        public string Moniker { get; set; }
-
-        public DateTime EventDate { get; set; } = DateTime.MinValue;
-        public int Length { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.MinValue;
+        public int LengthInWeeks { get; set; }
 
         // Child model using not nested relationship
         // On purpose named "Venue" with no "Location" to provide
@@ -28,11 +29,13 @@ namespace CodeCampApp.Models
         // for example "Location.Address1 => LocationAddress1", AutoMapper automatically will know what to do.
         public string LocationAddress1 { get; set; }
         public string LocationAddress2 { get; set; }
-        public string LocationAddress3 { get; set; }
         public string LocationCityTown { get; set; }
         public string LocationStateProvince { get; set; }
         public string LocationPostalCode { get; set; }
         public string LocationCountry { get; set; }
+        public string LocationContactPhone { get; set; }
+        // Image profile
+        public string LocationProfileImageFilename { get; set; }
 
         // Child model using nested relationship
         // Also a Model can have a regulr definition for a child model class

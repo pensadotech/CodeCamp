@@ -13,12 +13,11 @@ namespace CodeCamp.Domain.Entities
     {
         public int Id { get; set; }
 
+        // CampCode is a moniker is an alterntive ID to be used from website, instead of using the ID
+        public string CampCode { get; set; }
         public string Name { get; set; }
-        // Moniker is an alterntive ID to be used from website, instead of using teh ID
-        //[Required, StringLength(50)]
-        public string Moniker { get; set; }
-        public DateTime EventDate { get; set; } = DateTime.MinValue;
-        public int Length { get; set; } = 1;
+        public DateTime StartDate { get; set; } = DateTime.MinValue;
+        public int LengthInWeeks { get; set; } = 1;
 
         // Chidlren relationship (one-to-one) 
         public Location Location { get; set; }

@@ -19,6 +19,8 @@ namespace CodeCamp.Domain.Entities
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public string ContactPhone { get; set; }
+
+        // Image profile
         public string ProfileImageFilename { get; set; }
         public byte[] ProfileImageData { get; set; }
        
