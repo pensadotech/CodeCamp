@@ -32,6 +32,7 @@ namespace CodeCampApp
             // Note: singleton is not good for prod envitonment
             services.AddSingleton<ICampRepository, InMemoryCampRepository>();
 
+            // TEST change 
 
             // AutoMapper: Define a mapping profile. In this case, the App.MappingProfile. 
             // It contains the mapping definition between Domain.DTOs and App.Models
